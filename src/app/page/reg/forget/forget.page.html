@@ -1,0 +1,28 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/login"></ion-back-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-content class="ion-padding">
+  <div class="animated  fadeIn fast">
+    <img src="" alt="" srcset="">
+    <h3 class="text-bold color-text">Forgot Password</h3>
+     <p class="text-muted">
+       please enter your registered email or mobile to reset your password
+      </p>
+  </div>
+  <ion-list class="animated slow fadeInDown">
+    <ion-item>
+      <ion-label position="floating">Email/Mobile Number</ion-label>
+      <ion-input [(ngModel)]="email"></ion-input>
+   </ion-item>
+    <p
+    (click)="resetPassword()"
+    style="background-color: #0074e4;"
+     routerLinkActive="router-link-active"
+     class="btn-block  btn btn-primary mt-3 "
+      expand="full">
+      Recover Password
+    </p>
+  </ion-list>
+</ion-content>

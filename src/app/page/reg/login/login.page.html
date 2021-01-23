@@ -1,0 +1,84 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+      <ion-back-button
+       class="back-btn"
+       defaultHref="signup" slot="start"></ion-back-button>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>  
+<ion-list >
+   <div lines="none" class=" text-center animate__backInUp animate__animated ">
+    <img src="assets/icon/logo.png" style="height: 180px;width: 210px;object-fit: contain;" alt="logo">
+  </div>
+
+  <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
+
+    <ion-item class="input" >
+      <ion-label position="floating" color="primary"> <small> Email</small> </ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div class="error-message"
+          *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item class="input mt-3" >
+      <ion-label position="floating" color="primary"><small> Password</small></ion-label>
+      <ion-input type="password" formControlName="password"  required></ion-input>
+    </ion-item>
+    <div  class="text-danger text-small">{{errorMessage}}</div>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <div class="error-message"
+          *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    <ion-item lines="none">
+      <small slot="end" [routerLink]="['/forget']" routerLinkActive="router-link-active"  class="text-primary">Forget password</small>
+    </ion-item>
+    <br>
+    <div class="text-center ">
+      <div class="buttons"   >
+        <button  class="blob-btn" type="submit" >Login
+          <span class="blob-btn__inner">
+            <span class="blob-btn__blobs">
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+              <span class="blob-btn__blob"></span>
+            </span>
+          </span>
+        </button>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
+            <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+          </filter>
+        </defs>
+      </svg>
+      </div>
+    </div>
+  </form>
+<br><br>
+  </ion-list>
+  <br><br><br>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+
+    <div class="text-center mt-1">
+      <small class="ml-2">Don't Have an account?
+        <strong [routerLink]="['/signup']" routerLinkActive="router-link-active"  class="text-primary">Sign up</strong></small>
+     </div>
+  </ion-toolbar>
+</ion-footer>

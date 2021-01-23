@@ -1,0 +1,65 @@
+
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+     <ion-buttons slot="start">
+       <ion-back-button class="back-btn" defaultHref="tabs/market"></ion-back-button>
+     </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+  
+	<div class="">
+		<div class="m-2">
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">
+						
+						<div  class="preview-pic tab-content">
+						  <div class="tab-pane active" id="pic-1">
+							  <img src={{image}} style="height: 300px;object-fit: contain;"/></div>
+					  </div>
+				
+					</div>
+					<div class="details col-md-6">
+						<p class="product-title"  [innerHTML]="name"></p>
+						<div class="rating">
+							<div class="stars">
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+							<span class="review-no"> {{sale_price}} sale_price</span>
+						</div>
+						<small class="product-description">
+							stock_status {{stock_status}}
+					   </small>
+						<p class="price">current price: <span>${{price}}</span></p>
+						<small class="vote"><strong>{{regular_price}}</strong>regular_price <strong></strong></small>
+						<!-- <p class="sizes">sizes:
+							<span class="size" data-toggle="tooltip" title="small">s</span>
+							<span class="size" data-toggle="tooltip" title="medium">m</span>
+							<span class="size" data-toggle="tooltip" title="large">l</span>
+							<span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+						</p>
+						<p class="colors">colors:
+							<span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
+							<span class="color green"></span>
+							<span class="color blue"></span>
+						</p> -->
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- <button class="buy-btn" type="button">Buy now</button> -->
+		<!-- <button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button> -->
+	<br><br><br><br>
+  </ion-content>
+  <ion-footer>
+	  <ion-toolbar>
+		<button class="buy-btn" type="button" (click)="makePayment()">Pay</button>
+	  </ion-toolbar>
+  </ion-footer>

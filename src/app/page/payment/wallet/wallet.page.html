@@ -1,0 +1,69 @@
+<ion-header class="ion-no-border ">
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-back-button class="back-btn m-2" defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
+   
+  </ion-toolbar>
+</ion-header>
+<ion-content  >
+  <ion-list >
+    <ion-row class="ion-padding ion-margin ml-3">
+      <ion-col size="6" class="header" >
+      <small class="text-muted">My Wallet</small>
+      <ion-label><p class="balance">  ₦{{walletBallance}} .00 </p> </ion-label>
+       <!-- <small class="text-muted">{{  greeting}} what can we do for you</small> -->
+    </ion-col> 
+   
+  </ion-row>
+  <br>
+    <ion-row class="pl-2">
+      <ion-col size="5.8">
+          <ion-card 
+          (click)="give()"
+          class=" alert alert-primary">
+          
+            <img 
+             src="assets/wallet/give.svg" 
+              class="card-img">
+               <p class="text-bold text-dark">Give</p>
+      
+        </ion-card>
+      </ion-col>
+      <ion-col size="5.8">
+        <ion-card [routerLink]="['/celebrationcard']" 
+        class=" alert alert-primary">
+     
+          <img src="assets/wallet/giftcard.svg"  alt="icon" class="card-img">
+      
+             <p class="text-bold text-dark">Buy gift card</p>
+       
+        </ion-card>
+      </ion-col>
+      <ion-col size="5.8" class="mt-3">
+        <ion-card (click)="fundwallet()"  class="alert alert-primary">
+         
+          <img src="assets/wallet/fundwallet.svg"   
+          class="card-img">
+             <p class="text-bold text-dark">Fund wallet</p>
+     
+      </ion-card>
+    </ion-col>
+    <ion-col size="5.8" class="mt-3">
+      <ion-card [routerLink]="['/banktransfer']" 
+      class="   alert alert-primary">
+     
+          <img src="assets/wallet/transfer.svg"  class="card-img">
+           <p class="text-bold text-dark">Bank transfer</p>
+ 
+    </ion-card>
+  </ion-col>
+  
+    </ion-row>
+  
+  </ion-list>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)"
+   pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+</ion-content>

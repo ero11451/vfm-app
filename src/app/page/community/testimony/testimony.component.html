@@ -1,0 +1,49 @@
+<br>
+<ion-item lines="none">
+  <ion-input style="border-radius: 30px;" placeholder="Give your testimony"class="form-control pl-2"></ion-input>
+
+  <button  class="btn ml-1 btn-outline-primary pt-2" role="button">
+    <ion-icon size ="lare" name="send"></ion-icon>
+  </button>
+</ion-item>
+
+<ion-list *ngFor="let post of allPost" class="my-card animate fast fadeInLeft">
+
+  <ion-item lines="none"> 
+    <ion-avatar>
+         <img class="icon" src={{post.authorimage}} />
+    </ion-avatar>
+     <ion-label class="card-name" > 
+         <p style="margin-bottom: -5px;color: black;font-weight: 600;">{{post.author}} 
+          <ion-icon class="text-primary mt-1" name="checkmark-circle"></ion-icon>
+        </p>
+         <small>@{{post.author | trim }}</small>  
+      </ion-label>
+   </ion-item>
+   <ion-item lines="none" >
+       <small class="mr-2">   {{post.content}} </small>
+        <img src={{post.photo}}  
+        (click)="openImage(post.photo)"  *ngIf="post.photo"  
+        style="border-radius: 5px; height:70px;width: 70px;" alt="" srcset="">
+  </ion-item>
+  <div class= "my-card-footer ion-padding">
+    <div class="animated faster fadeInDown"[routerLink]="[ '/comment', post.postId ]">
+      <img  class="icon" [src]="currentUserImage" alt="" srcset="">
+      <small >  Comment </small>
+    </div>
+    <div (click)="likePost(post)" class="animated fast fadeInDown">
+      <img  class="icon" src="assets/icon/like.png" alt="" srcset="">
+        <small > {{post.likes.length}} Likes</small> 
+    </div>
+    <div (click)="dislike(post)" class="animated  fadeInDown">
+        <img class="icon" src="assets/icon/dislike.png" alt="" srcset="">
+          <small > Dislike</small>
+      </div>
+   </div>
+   </ion-list>
+   <div *ngIf=" allPost == 0" class="text-center">
+    <img src="assets/icon/sad-face.svg" style=" height: 150px;width: 150px;
+    margin-top: 70px;" alt="" >
+     <p class="mt-4 text-muted">can not get post right now</p>
+     <small class="text-primary">Check your network</small>
+  </div>

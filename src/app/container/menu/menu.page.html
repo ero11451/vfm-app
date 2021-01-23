@@ -1,0 +1,160 @@
+<ion-menu side="start" menuId="first" contentId="content">  
+  
+  <ion-content>  
+
+    <ion-menu-toggle auto-hide="false">
+    <div class="p-3 mt-3 " style="position: absolute;">
+      
+      <div class="ml-2 mb-2">
+        <ion-avatar *ngIf="userImage">
+          <img [src]="userImage" />
+        </ion-avatar>
+        <p class="text-bold mt-1 ml-1">{{userName}} </p>
+      </div>
+      <div   class="links" (click)="chat()">  
+        <img class="icon" src='assets/homeicon/chat.svg' slot="start">
+        <small class="ml-3 mt-2 text-bold">
+          Chat
+        </small>  
+      </div> 
+      <div  *ngFor="let pages of navigate" >  
+        <div  [routerLink]="pages.url" class="links" lines=none routerDirection="forward">  
+          <ion-img class="icon" [src]="pages.icon" slot="start"></ion-img>  
+          <small class="ml-3 mt-2 text-bold">
+           {{pages.title}}  
+          </small>  
+        </div> 
+    </div>
+    <div   class="links" (click)="logOut()">  
+      <img class="icon" src="assets/icon/logout.svg" slot="start">
+      <small class="ml-3 mt-2 text-bold">
+        Logout
+      </small>  
+    </div> 
+ 
+
+    </div>
+    
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500" version="1.1">
+     
+      <!-- Tomato Box -->
+      <rect id="tomato-box" x="-10" y="-10" width="20" height="20" fill="tomato" opacity="0.3"></rect>
+      <path d="M250,520 L250, -100" id="tomato-path" fill="none" stroke="none"></path>
+    
+      <animateTransform xlink:href="#tomato-box" attributeName="transform" attributeType="XML" type="rotate" from="0 0 0" to="360 0 0" dur="5s" repeatCount="indefinite" fill="freeze" />
+      <animateMotion xlink:href="#tomato-box" dur="20s" begin="0s" fill="freeze" repeatCount="indefinite">
+        <mpath xlink:href="#tomato-path" />
+      </animateMotion>
+    
+      <!-- Blue Box -->
+      <rect id="blue-box" x="-25" y="-25" width="50" height="50" fill="blue" opacity="0.3"></rect>
+      <path d="M450,1000 L450, -400" id="blue-path" fill="none" stroke="none"></path>
+    
+      <animateTransform xlink:href="#blue-box" attributeName="transform" attributeType="XML" type="rotate" from="0 0 0" to="360 0 0" dur="3s" repeatCount="indefinite" fill="freeze" />
+      <animateMotion xlink:href="#blue-box" dur="20s" begin="0s" fill="freeze" repeatCount="indefinite">
+        <mpath xlink:href="#blue-path" />
+      </animateMotion>
+    
+      <!-- Medium Sea Green Box -->
+      <rect id="mediumseagreen-box" x="-25" y="-25" width="50" height="50" fill="mediumseagreen" opacity="0.3"></rect>
+      <path d="M50,600 L50, -400" id="mediumseagreen-path" fill="none" stroke="none"></path>
+    
+      <animateTransform xlink:href="#mediumseagreen-box" attributeName="transform" attributeType="XML" type="rotate" from="0 0 0" to="360 0 0" dur="6s" repeatCount="indefinite" fill="freeze" />
+      <animateMotion xlink:href="#mediumseagreen-box" dur="18s" begin="0s" fill="freeze" repeatCount="indefinite">
+        <mpath xlink:href="#mediumseagreen-path" />
+      </animateMotion>
+    
+      <!-- Hot Pink Green Box -->
+      <rect id="hotpink-box" x="-50" y="-50" width="100" height="100" fill="hotpink" opacity="0.3"></rect>
+      <path d="M200,1000 L200, -400" id="hotpink-path" fill="none" stroke="none"></path>
+    
+      <animateTransform xlink:href="#hotpink-box" attributeName="transform" attributeType="XML" type="rotate" from="0 0 0" to="360 0 0" dur="20s" repeatCount="indefinite" fill="freeze" />
+      <animateMotion xlink:href="#hotpink-box" dur="15s" begin="0s" fill="freeze" repeatCount="indefinite">
+        <mpath xlink:href="#hotpink-path" />
+      </animateMotion>
+    
+      <!-- Saddle Brown Green Box -->
+      <rect id="saddlebrown-box" x="-20" y="-20" width="40" height="40" fill="saddlebrown" opacity="0.3"></rect>
+      <path d="M150,700 L150, -400" id="saddlebrown-path" fill="none" stroke="none"></path>
+    
+      <animateTransform xlink:href="#saddlebrown-box" attributeName="transform" attributeType="XML" type="rotate" from="0 0 0" to="360 0 0" dur="4s" repeatCount="indefinite" fill="freeze" />
+      <animateMotion xlink:href="#saddlebrown-box" dur="25s" begin="0s" fill="freeze" repeatCount="indefinite">
+        <mpath xlink:href="#saddlebrown-path" />
+      </animateMotion>
+    
+      <!-- Black Green Box -->
+      <rect id="black-box" x="-10" y="-10" width="20" height="20" fill="black" opacity="0.3"></rect>
+      <path d="M350,750 L350, -300" id="black-path" fill="none" stroke="none"></path>
+    
+      <animateTransform xlink:href="#black-box" attributeName="transform" attributeType="XML" type="rotate" from="0 0 0" to="360 0 0" dur="3s" repeatCount="indefinite" fill="freeze" />
+      <animateMotion xlink:href="#black-box" dur="25s" begin="0s" fill="freeze" repeatCount="indefinite">
+        <mpath xlink:href="#black-path" />
+      </animateMotion>
+    
+      <!-- Gold Green Box -->
+      <rect id="gold-box" x="-40" y="-40" width="80" height="80" fill="gold" opacity="0.3"></rect>
+      <path d="M300,1000 L300, -80" id="gold-path" fill="none" stroke="none"></path>
+    
+      <animateTransform xlink:href="#gold-box" attributeName="transform" attributeType="XML" type="rotate" from="0 0 0" to="360 0 0" dur="3s" repeatCount="indefinite" fill="freeze" />
+      <animateMotion xlink:href="#gold-box" dur="25s" begin="0s" fill="freeze" repeatCount="indefinite">
+        <mpath xlink:href="#gold-path" />
+      </animateMotion>
+    
+      <!-- Rebbeca Purple Box -->
+      <rect id="rebeccapurple-box" x="-40" y="-40" width="80" height="80" fill="rebeccapurple" opacity="0.3"></rect>
+      <path d="M200,1200 L200, -80" id="rebeccapurple-path" fill="none" stroke="none"></path>
+    
+      <animateTransform xlink:href="#rebeccapurple-box" attributeName="transform" attributeType="XML" type="rotate" from="0 0 0" to="360 0 0" dur="6s" repeatCount="indefinite" fill="freeze" />
+      <animateMotion xlink:href="#rebeccapurple-box" dur="30s" begin="0s" fill="freeze" repeatCount="indefinite">
+        <mpath xlink:href="#rebeccapurple-path" />
+      </animateMotion>
+    
+      <!-- Coral Box -->
+      <rect id="coral-box" x="-10" y="-10" width="20" height="20" fill="coral" opacity="0.3"></rect>
+      <path d="M75,1000 L75, -100" id="coral-path" fill="none" stroke="none"></path>
+    
+      <animateTransform xlink:href="#coral-box" attributeName="transform" attributeType="XML" type="rotate" from="0 0 0" to="360 0 0" dur="6s" repeatCount="indefinite" fill="freeze" />
+      <animateMotion xlink:href="#coral-box" dur="10s" begin="0s" fill="freeze" repeatCount="indefinite">
+        <mpath xlink:href="#coral-path" />
+      </animateMotion>
+    
+      <!-- Turquoise Box -->
+      <rect id="turquoise-box" x="-35" y="-35" width="70" height="70" fill="turquoise" opacity="0.3"></rect>
+      <path d="M425,1500 L425, -100" id="turquoise-path" fill="none" stroke="none"></path>
+    
+      <animateTransform xlink:href="#turquoise-box" attributeName="transform" attributeType="XML" type="rotate" from="0 0 0" to="360 0 0" dur="10s" repeatCount="indefinite" fill="freeze" />
+      <animateMotion xlink:href="#turquoise-box" dur="13s" begin="0s" fill="freeze" repeatCount="indefinite">
+        <mpath xlink:href="#turquoise-path" />
+      </animateMotion>
+    
+      <!-- Dark Gray Box -->
+      <rect id="darkgray-box" x="-60" y="-60" width="120" height="120" fill="darkgray" opacity="0.3"></rect>
+      <path d="M0,1500 L0, -100" id="darkgray-path" fill="none" stroke="none"></path>
+    
+      <animateTransform xlink:href="#darkgray-box" attributeName="transform" attributeType="XML" type="rotate" from="0 0 0" to="360 0 0" dur="20s" repeatCount="indefinite" fill="freeze" />
+      <animateMotion xlink:href="#darkgray-box" dur="15s" begin="0s" fill="freeze" repeatCount="indefinite">
+        <mpath xlink:href="#darkgray-path" />
+      </animateMotion>
+    
+    </svg>
+
+</ion-menu-toggle>
+  </ion-content>  
+  
+  <!-- <ion-footer class="ion-no-border">
+    <ion-toolbar>
+      <ion-item lines="none">
+        <ion-avatar style="height: 40px;width: 40px;">
+     <img src="assets/images/profileimage.jpg"  />
+   </ion-avatar>   
+   <ion-label class="ml-2">
+      <small class="text-primary mt-2 text-bold">Hi ero osamuyi</small><br>
+
+       <small class=" mt-2 text-bold text-muted">N000</small> -
+    </ion-label> 
+      
+ </ion-item>
+
+    </ion-toolbar>
+  </ion-footer> -->
+</ion-menu>  

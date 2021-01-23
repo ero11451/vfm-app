@@ -1,0 +1,36 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <!-- <ion-icon slot="end" class="ion-margin" name="close" (click)="close()" ></ion-icon> -->
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
+    <small class="text-primary text-bold">  Feedback and Complaints </small>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div  class="m-3">
+    <!-- <small>
+      Kindly enter your Feedback or complaints here, our team will jump on it asap!
+    </small> -->
+    <input class="form-control" type="text"
+     placeholder="what feature would you like to see removed" name="">
+     <br>
+     <input class="form-control" type="text"
+      placeholder="what feature would you like to see added" name="">
+     <br>
+    <textarea placeholder="Kindly enter your Feedback or complaints here."
+     class="form-control" type="text" name=""></textarea>
+    <div class="mt-3 text-center">
+       </div>
+    
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="text-center">
+   <ion-button  expand="block" shape="round">
+    Send
+   </ion-button>
+ 
+  </ion-toolbar>
+</ion-footer>

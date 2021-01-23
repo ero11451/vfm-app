@@ -1,0 +1,34 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/messsage"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title>messgaedetail</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <div class="text-center">
+    <ion-spinner color="primary" name="crescent" *ngIf="notNetwork"></ion-spinner>
+  </div>
+<ion-list *ngFor="let video of playlist">
+  <ion-item class="mb-2 mt-2" lines="none">
+    <ion-avatar>
+      <img [src]="video.snippet.thumbnails.default.url" />
+    </ion-avatar>
+<ion-label class="ml-2">
+    <p class="text-dark text-bold" style="margin-bottom: -5px;"> {{ video.snippet.title | shorten: 50: '...'}} </p> 
+     <small class="text-muted"> 
+      {{ video.snippet.channelTitle | shorten: 50: '...'}} 
+     </small>
+</ion-label>
+  </ion-item>
+  <div class="container-image "> 
+    <img [src]="video.snippet.thumbnails.default.url" (click)=" openVideo(video)"    alt="Snow" style="width:100%;height: 100%;object-fit: cover;">
+    <div class="centered">
+      <img  src="assets/homeicon/play.svg" alt="" srcset="">
+      
+     </div>
+  </div>
+
+</ion-list>
+</ion-content>

@@ -1,0 +1,53 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="back-btn " defaultHref="tabs/wallet"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="ion-padding">
+
+        <div >
+          <p  style="margin-bottom: -2px;font-size: 40px; font-weight: bolder;width: 80%;">
+            Give from your wallet
+          </p>
+          <br>
+          <!-- <small class="text-muted ">
+          The amount you entered will be removed from your wallet 
+          </small> -->
+        </div> 
+<br>
+<form class="form"
+ [formGroup]="validations_form" 
+ (ngSubmit)="tryRegister(validations_form.value)">
+ 
+  
+ 
+    <div class="form-group ">
+        <ion-input placeholder=" Amount " type= "number"
+            numbersOnly formControlName="amount"  class="form-control"  required> </ion-input>
+        </div>
+   <div class="form-group">
+
+            <ion-input placeholder="Purpose Of Giving " type="text"
+             formControlName="propose" class="form-contrl text-danger" required></ion-input>
+    </div>
+
+
+        <div class="form-group ">
+            <ion-textarea  type="text" 
+            row = 3 class="form-control" 
+             formControlName="preyerPoint" placeholder="Prayer Point " required></ion-textarea>
+        </div>
+    <br>
+      <ion-button expand="full" 
+      type="submit"
+      class="blob-btn" [disabled]="!validations_form.valid">Submit</ion-button>
+ 
+        </form>
+     
+    </ion-list>
+</ion-content>
+

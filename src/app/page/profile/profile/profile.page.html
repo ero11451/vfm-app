@@ -1,0 +1,209 @@
+
+<ion-header  class="ion-no-border ion-no-padding " no-border color="primary" >
+  <ion-item  class="ion-no-border ion-no-padding " lines="none"> 
+   </ion-item>
+</ion-header>
+
+<ion-content>
+
+	
+	<ion-item class="profile" lines="none">
+    <div>
+    <img [src]=userImage (click)="uploadFile(userImage)" class="imageProfile">
+  
+    </div>
+    
+    <!-- <div class="check"><i class="fas fa-check"></i></div> -->
+    <div class="ml-2">
+   	  	<p class="text-bold">{{userDisplayName}}</p>
+       <p class="text-muted">{{userEmail}}</p>
+       <small class="text-muted mt-1 ">{{status}}</small>
+    
+    </div>
+
+    </ion-item>
+    <ion-item lines="none">
+      
+      <small> My bio <br>  {{bio}}</small>
+    </ion-item>
+   
+    <div   style="background: white;" color="primary" >
+  
+  <ion-item class="m-2" 
+  [routerLink]="['/tabs/wallet']" 
+  lines="none" style="
+border: solid 1px rgb(217, 217, 219);
+margin: 10px;
+border-radius: 10px;
+--ion-item-background: linear-gradient(2deg, #fefeff 29%, #f8f9fe 96%);">    
+<ion-icon name="wallet" size="large" color="success"></ion-icon>
+ <ion-label class="mt-2 mb-2 ml-2">
+     <small class="text-muted ">Wallet balance</small>
+     <p class="text-bold text-success mb-1" > #{{walletBallance}}.00</p>
+ </ion-label>
+  <button class="btn btn-success btn-sm pl-3 p-1 pr-3" slot="end" >Fund wallet</button>
+ </ion-item> 
+ 
+</div> 
+
+<ion-row  *ngIf="isCurrentUser">
+  <ion-col size="6">
+    <div   style="background: white;" color="primary" >
+      <ion-item class="m-2" 
+      [routerLink]="['/edit']" 
+      lines="none" style="
+    border: solid 1px rgb(217, 217, 219);
+    margin: 10px;
+    border-radius: 10px;
+    --ion-item-background: linear-gradient(2deg, #fefeff 29%, #f8f9fe 96%);"> 
+     <ion-icon name="create-outline" size="large" color="primary"></ion-icon>
+     <ion-label class="  ml-2">
+         <p class="text-bold text-primary " > Edit</p>
+     </ion-label>
+     </ion-item> 
+     
+    </div> 
+    
+  </ion-col>
+  <ion-col size="6">
+    <div   style="background: white;" color="primary" >
+  
+      <ion-item (click)=" myDetail()" class="m-2"  style=" border: solid 1px rgb(217, 217, 219);margin: 10px;    border-radius: 10px;
+    --ion-item-background: linear-gradient(2deg, #fefeff 29%, #f8f9fe 96%);">    
+<ion-icon name="person-outline" size="large" color="primary"></ion-icon>
+     <ion-label class=" ml-2">
+         <p class="text-bold text-primary " > Detail</p>
+     </ion-label>
+      </ion-item> 
+    </div> 
+  </ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col size="6">
+    <div   style="background: white;" color="primary" >
+  
+      <ion-item class="m-2" 
+      [routerLink]="['/setting']" 
+      lines="none" style="
+    border: solid 1px rgb(217, 217, 219);
+    margin: 10px;
+    border-radius: 10px;
+    --ion-item-background: linear-gradient(2deg, #fefeff 29%, #f8f9fe 96%);">    
+    <ion-icon slot="start" name="settings" size="large" color="primary"></ion-icon>
+     <ion-label class=" ml-2">
+         <p class="text-bold text-primary " > Setting</p>
+     </ion-label>
+      </ion-item> 
+    </div> 
+  </ion-col>
+  <ion-col size="6">
+    <div   style="background: white;" color="primary" >
+      <ion-item class="m-2" 
+      (click)="myPost()"
+      style="border: solid 1px rgb(217, 217, 219); margin: 10px; border-radius: 10px; --ion-item-background: linear-gradient(2deg, #fefeff 29%, #f8f9fe 96%);">    
+      <ion-icon name="chatbox" size="large" color="primary"></ion-icon>
+      <ion-label class=" ml-2">
+         <p class="text-bold text-primary " > Post/testimony</p>
+     </ion-label>
+     </ion-item> 
+     
+    </div> 
+    
+  </ion-col>
+  <ion-col size="6">
+    <div   style="background: white;" color="primary" >
+  
+      <ion-item [routerLink]="['/tabs/wallet']" routerLinkActive="router-link-active"  class="m-2"  style="
+    border: solid 1px rgb(217, 217, 219);
+    margin: 10px;
+    border-radius: 10px;
+    --ion-item-background: linear-gradient(2deg, #fefeff 29%, #f8f9fe 96%);">    
+    <ion-icon name="documents" size="large" color="primary"></ion-icon> 
+     <ion-label class=" ml-2">
+         <p class="text-bold text-primary " >My notes</p>
+     
+     </ion-label>
+      </ion-item> 
+     
+    </div> 
+    
+  </ion-col>
+ 
+  <ion-col size="6">
+    <div   style="background: white;" color="primary" >
+  
+      <ion-item class="m-2" (click)="logOut()" style="
+    border: solid 1px rgb(217, 217, 219);
+    margin: 10px;
+    border-radius: 10px;
+    --ion-item-background: linear-gradient(2deg, #fefeff 29%, #f8f9fe 96%);">    
+    <ion-icon name="log-out" size="large" color="danger"></ion-icon>
+     <ion-label class=" ml-2">
+         <p class="text-bold text-danger" >Logout</p>
+     
+     </ion-label>
+      </ion-item> 
+     
+    </div> 
+    
+  </ion-col>
+</ion-row>
+ 
+
+
+        <ion-row *ngFor="let user of  userFollowers  "  style="width: 100% !important;padding: 0px;" >
+          <ion-col size="4">
+            <ion-card class="container-image">
+              <img [src]='user.userImage' alt="Snow" style="width:100%;height: 100%;object-fit: cover;">
+              <div class="bottom-left ion-text-start">
+                 <small class="text-bold "> {{user.userName}} </small>
+              </div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      
+ 
+        <ion-row style="width: 100%;">
+          <ion-col  *ngFor="let user of userFollowing" size="4">
+            
+              <img [src]="user.userImage" alt="image" style="width:100px;height:130px;margin: 2px; border-radius: 5px; object-fit: cover;">
+              <!-- <div class="bottom-left ion-text-start">
+                 <small class="text-bold ">  {{ user.userName  }} </small>
+               
+                </div> -->
+            
+          </ion-col>
+        </ion-row>
+  
+        <!-- <div  *ngFor="let post of posts" >
+        <ion-card  class="m-2 p-2">  
+             <ion-item lines="none" class=" ion-no-padding">
+              <ion-avatar>
+                <img [src]="post.authorimage" alt="Snow" class="post-user-image">
+             </ion-avatar>  
+              <ion-label class="ml-3"> 
+                  <p style=" margin-bottom: -5px;color: black;font-weight: 600;">{{post.author}}</p>
+                  <small class="text-muted" style="font-size: 10px;">{{post.createdDate}}</small>             
+              </ion-label>
+             </ion-item>
+             <ion-item *ngIf="post.photo" class="ion-no-padding ion-no-margin" lines='none'>
+              <img [src]="post.photo" style="height: 250px;width: 100%; object-fit: cover;" alt="" srcset="">
+             </ion-item>
+             <ion-item  lines="none" class="ion-no-margin  ion-no-padding ">
+                  <small class=""> {{post.content}}</small>
+           </ion-item>
+           <ion-item  lines="none" class="ion-no-margin  ion-no-padding "> 
+            <small [routerLink]="['/comment', post.commentId]"
+            slot="start"
+            routerLinkActive="router-link-active"  class=" mt-2 text-primary">View post</small>
+            <small slot="end" class="text-primary mr-2"  *ngIf="isCurrentUser" 
+            (click)="getDetele(post.commentId)">Delete</small>
+           </ion-item>
+          </ion-card>
+        </div> -->
+ 
+ 
+
+  
+</ion-content>

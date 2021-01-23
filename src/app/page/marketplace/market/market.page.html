@@ -1,0 +1,51 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Header</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-item lines="none" 
+  style="
+  border: solid 1px#e0e0e0;
+  margin: 10px;
+
+  border-radius: 10px;
+  --ion-item-background: linear-gradient(2deg, #e9e9f3 29%, #e4e3fa 96%);">
+    <div class=" mt-2 mb-3"> 
+      <small class="text-muted mb-2">welcome</small>
+      <h4 class="text-bold" style="color: black; margin-top: -1px;">  Church store  </h4>   
+    </div>
+
+    <!-- <small slot="end" class="text-muted" style="height: 20px;" >{{greeting}}</small> -->
+
+</ion-item>
+
+
+<div *ngIf="!posts$" class="text-center">
+  <br>
+  <ion-spinner name="crescent" color="primary"></ion-spinner>
+</div>
+<ion-row >
+  <ion-col size="5.7" class="m-1" *ngFor="let item of posts$; let i=index" >
+    <ion-card [routerLink]="['/productdetail', item.id]" routerLinkActive="router-link-active"  class="product-card">
+    <ion-item lines="none" class="ion-no-padding ion-no-margin">
+      <small class="off">${{item.price}}</small>
+      <small slot="end"> <ion-icon  name="heart"></ion-icon></small>
+      
+    </ion-item>
+
+    <img class="productimage" src={{item.images[0].src}} />
+    <!-- <img class="productimage" src="assets/images/defaultimage.png"  alt="" srcset=""> -->
+  <div class="text-left p-2">
+        <small>{{item.name | shorten: 30: '...'}} </small>
+       <!-- <p class="">{{item.price}}</p>  -->
+    </div>
+      <ion-button  expand="block"  >
+        Buy
+      </ion-button>
+    </ion-card>
+  </ion-col>
+ 
+</ion-row>
+</ion-content>

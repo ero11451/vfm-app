@@ -1,0 +1,48 @@
+
+  
+.back-btn  {
+    margin-left: 5px;
+    color: #0d6efd;;
+    width: 40px;
+    height: 40px;
+    background-color: #b2cef7;;
+    border-radius: 3px;
+}
+
+.product-card{
+
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+    margin: 1%;
+    padding: 5px;
+     
+    .productimage{
+     height: 100px;
+     width: 96%;
+     object-fit: contain;
+    }
+    .off{
+        background-color: cyan;
+        font-size: 10px;
+        float: left;
+        margin: 5px 0px 10px 0px;
+        border-radius: 5px;
+        padding: 3px 5px;
+        font-weight: 800;
+    }
+    .title{
+        font-weight: lighter;
+        color: black;
+        margin-bottom: -1px;
+    }
+    .price{
+        font-weight: bolder;
+        color: black;
+        margin-top: 5px; 
+        margin-bottom: 5px;
+    }
+}
+.bg{
+   background: lightslategray !important;
+}

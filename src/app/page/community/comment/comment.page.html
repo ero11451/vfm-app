@@ -1,0 +1,89 @@
+
+<ion-content>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/community"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+       <small> Post </small>
+      </ion-title>
+  </ion-toolbar>
+  <ion-list 
+  class="my-card animate fast fadeInLeft" >
+ 
+    <ion-item lines='none' class=" ion-no-margin">
+        <ion-avatar>
+           <img [src] =authorImage alt="Snow" >
+        </ion-avatar>     
+        <ion-label class="card-name ml-3" > 
+          <p style="margin-bottom: -5px;color: black;font-weight: 600;">
+          {{author}}
+          </p>
+          <small>{{time}}</small>  
+       </ion-label> 
+    </ion-item>
+    <ion-item>
+     
+     <div>
+        <img [src]=postImage *ngIf="postImage" class="post-image mt-2 mb-2" alt="" srcset="">
+        <small class="mr-2 mt-3"> 
+        {{content}}  
+        </small>
+     </div>
+     </ion-item>
+  <!-- <div class= "my-card-footer pt-2 pb-2">
+    <div class="animated fast fadeInDown">
+      <img  class="icon" src="assets/icon/like.png" alt="" srcset="">
+        <small > 129 </small> 
+    </div>
+    
+      <div class="animated  fadeInDown">
+        <img class="icon" src="assets/icon/dislike.png" alt="" srcset="">
+          <small >23</small>
+      </div>
+      <div class="animated faster fadeInDown"[routerLink]="[ '/comment' ]">
+        <img  class="icon" src="assets/icon/live.svg" alt="" srcset="">
+        <small > 12  </small>
+      </div>
+   </div> -->
+
+  </ion-list>
+<hr >
+<ion-list class="m-2">
+  <small class="mt-2 mb-3 ml-1 text-muted">Comments</small>
+  
+  <ion-row class="mt-3 " *ngFor="let comment of allComment">
+    <ion-col size="1">
+      <ion-avatar style="height: 30px; width: 30px;">
+       <img  src={{comment.authorImage}} />
+   </ion-avatar>
+      
+    </ion-col>
+    <ion-col size="11">
+      <div class="ml-2">
+        <p style="color: #0074e4;" class=" mr-1" >{{comment.authorName}}</p>
+      <small  class="mr-2">
+      {{comment.content}}
+      </small>    
+   </div>  
+    </ion-col>
+    </ion-row>
+</ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar >
+    <form [formGroup]="validations_form" (ngSubmit)="makeComment(validations_form.value)">
+    <ion-item>
+      <ion-label position="floating">Make a comment</ion-label>
+      <ion-textarea formControlName="comment"  required></ion-textarea>
+      <button class="btn"   slot="end" [disabled]="!validations_form.valid">
+      <ion-icon name="send" type="submit"
+     class="mt-3"  ></ion-icon>
+
+      </button>
+    </ion-item>
+    </form>
+  </ion-toolbar>
+</ion-footer>

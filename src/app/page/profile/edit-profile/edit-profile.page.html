@@ -1,0 +1,43 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+     <ion-buttons slot="start">
+       <ion-back-button defaultHref=""></ion-back-button>
+     </ion-buttons>
+    <ion-title> <small>Edit</small> </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="ion-padding">
+      
+  <form   #blogForm="ngForm" (ngSubmit)="blogForm.form.valid && saveBlogPost()" accept-charset="UTF-8" novalidate>
+  
+    
+    <ion-item >
+      <ion-input name="Display name" [(ngModel)]="userData.displayName"
+        clearInput 
+       class="title " placeholder="User name"[(ngModel)]="displayName"></ion-input>
+    </ion-item>
+    <ion-item >
+      <ion-textarea name="bio" [(ngModel)]="userData.bio"
+       clearInput 
+       class="title " placeholder="Your bio"></ion-textarea>
+    </ion-item>
+     <ion-item  >
+      <ion-input name="Phone number" [(ngModel)]="userData.phoneNumber"
+         clearInput 
+         class="title " placeholder="Phone Number"></ion-input>
+    </ion-item> 
+    <ion-item no-padding >
+      <ion-input name="Gender" [(ngModel)]="userData.gender"
+       clearInput 
+       class="title " placeholder="Gender"></ion-input>
+    </ion-item> 
+ <br>
+    <button class="btn btn-primary btn-sm p-2 mt-2 btn-block btn-outline"
+    [disabled]="!blogForm.valid" type="submit"
+    type="button">Post</button>
+ 
+</form>
+  </ion-list>
+</ion-content>

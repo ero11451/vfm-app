@@ -1,0 +1,54 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-icon slot="end" class="ion-margin" name="close" (click)="close()" ></ion-icon> -->
+    <ion-title>
+      <ion-buttons slot="end">
+        <ion-back-button class="back-btn" defaultHref="tabs/home"></ion-back-button>
+      </ion-buttons>     
+      <small class="text-primary">  Setting </small> </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-list lines=none>
+  <ion-item>
+    <img src="assets/images/notification.svg" class="icon" alt="" srcset="">
+
+  <ion-label> <small>  Notification</small></ion-label>
+  <ion-toggle color="primary"></ion-toggle>
+  </ion-item>
+  <ion-item>
+    <img src="assets/images/notification.svg" class="icon" alt="" srcset="">
+
+  <ion-label> <small> Schedule Notification</small></ion-label>
+  <ion-datetime slot="end" display-format="MMM DD, YYYY HH:mm"></ion-datetime>
+ 
+  </ion-item>
+  <ion-item>
+    <img src="assets/images/location.svg" class="icon" alt="" srcset="">
+  <ion-label>
+    <small> location </small>
+   </ion-label>
+  <ion-toggle color="primary"></ion-toggle>
+  </ion-item>
+  
+  <!-- <div class="heading">General</div>
+  
+    <p>Preferred language & region</p>
+    <small>English (Nigeria)</small>
+   -->
+  <div class="line"></div>
+  <ion-item >
+      <ion-label>
+      <small class="heading text-primary">Privacy</small>
+       <p>  Share Usage Statistics </p>
+      <ion-note class="note">To improve on the services offered</ion-note>
+    </ion-label>
+    <ion-toggle [(ngModel)]="notification" (ionChange)="switchNotification(notification)" slot="end" checked="false"></ion-toggle>
+  
+  </ion-item>
+ 
+</ion-list>
+</ion-content>

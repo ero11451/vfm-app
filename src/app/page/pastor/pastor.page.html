@@ -1,0 +1,33 @@
+<ion-header  class="ion-no-border">
+  <ion-toolbar style="--background: rgb(248, 244, 247);">
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <small class="">
+        Our Pastors
+      </small>
+      <!-- <small>Our pastors</small> -->
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="--background: rgb(244, 244, 248);">
+
+<ion-row>
+  <ion-col  *ngFor="let item of [1,1,1,1,1]; let i=index"size="4" class="text-center">
+    <div class="text-center main-center">
+          <ion-avatar>
+        <img src="../../../assets/bishopimage.jpg" />
+      </ion-avatar>
+      <small>Bishop Abraham Chigbundu</small>
+      <small>
+        <!-- <ion-icon name="call"></ion-icon> -->
+        G.O
+      </small>
+    </div>
+
+  </ion-col>
+  
+</ion-row>
+</ion-content>

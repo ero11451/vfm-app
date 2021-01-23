@@ -1,0 +1,70 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="back-btn" defaultHref="tabs/community"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <small>Post</small>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  
+ 
+    <!-- <div class="note">Add Photo/Video</div> -->
+    
+  <form   #blogForm="ngForm" (ngSubmit)="blogForm.form.valid && saveBlogPost()" accept-charset="UTF-8" novalidate>
+  
+    
+      <ion-item lines=none no-padding class="darklist">
+        <ion-textarea name="postContent" [(ngModel)]="postData.content"
+        required  rows="7" clearInput 
+         class="title " placeholder="What on your mind"></ion-textarea>
+      </ion-item>
+ 
+    <ion-row class="mt-4">
+      <ion-col size="3">
+         <button class="upload-btn">
+          <img src="assets/images/defaultimage.png"*ngIf="!postImage"  style="height: 60px;width: 60px;">
+          <img *ngIf="postImage" [src]="postImage || '//:0'" style="height: 60px;width: 60px;">
+      
+            <div *ngIf="loading" class="text-center"> 
+                 <ion-spinner name="crescent" color="success"></ion-spinner>
+                 <small class="text-muted"> Preparing File  {{uploadPercent}} %</small>
+            </div>
+             <div class="text-center" *ngIf="uploadPercent">
+               <div class="text-center alert alert-primary" *ngIf="uploadPercent == 100">
+                    Ready  !!
+               </div>
+             </div>
+      
+      
+        </button>
+      </ion-col>
+      <ion-col size="9">
+        <div  class="btn-image-uploade mb-2" fill="outline" size="small" >
+          <ion-icon name="images" color="primary" class="m-2"></ion-icon>
+          <input type="file" id="file" accept="image/x-png,image/gif,image/jpeg" (change)="uploadPostImage($event)" #filepiInput/> 
+  
+          <label for="file" >
+            <small class="text-bold">Image or Gif</small><br>
+            <small style="font-size: 10px;">PNG, JPG,GIF</small>
+          </label>
+          <!-- <input style="display: non" type="file" name="file">   -->
+        </div>
+        
+            
+      </ion-col>
+    </ion-row>
+    <div class="m-1">
+      <button class="btn btn-primary btn-block btn-outline"
+      (click)="  saveBlogPost()"
+      [disabled]="!blogForm.valid" type="submit"
+      type="button">Post</button>
+      </div>
+
+  </form>
+
+</ion-content>

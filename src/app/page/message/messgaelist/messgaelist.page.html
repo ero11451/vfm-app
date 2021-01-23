@@ -1,0 +1,117 @@
+<ion-header  class="ion-no-border  " no-border color="primary" >
+  <ion-item  lines="none">  
+    <ion-avatar slot="start" style="height: 30px;width: 30px;">
+      <img src="assets/images/profileimage.jpg">
+      </ion-avatar> 
+   <ion-label      class="name  animated fast fadeInLeft text-bold"> 
+  
+        <small style="margin-left: 8px; font-weight: bolder;" class="text-primary">
+          Hi 
+        </small>
+   </ion-label>
+   
+   </ion-item>
+</ion-header>
+
+<ion-content>
+ 
+  <div [routerLink]="['/nosevice']"   class="home-banner">
+    <img  class="bg" src ="assets/vfm-bg.jpg" 
+    alt="Snow" style="width:100%;height: 100%;object-fit: cover;">
+  
+    <div class="centered">
+      <!-- <ion-icon color="danger"  name="play"></ion-icon> -->
+    <img src="assets/homeicon/play.svg" alt="" style="height: 50px;width: 50px;" srcset="">
+         
+ </div>
+
+     <small class="bottom-right text-muted"> Go live</small>
+  
+  </div>
+  <!-- <img src="assets/images/youtubebanner.jpeg" style="width: 100%;height: 120px;object-fit: cover;" alt="" srcset=""> -->
+ <ion-list lines="none">
+   <ion-item>
+     <ion-avatar style="height: 30px;width: 30px">
+       <img src="assets/bishopimage.jpg" />
+     </ion-avatar>
+     <ion-label class="ml-2">
+       <p style="margin-bottom: -5px;">Youtube Channel</p>
+       <!-- <small  class="text-muted"> Voice of freedom </small> -->
+      </ion-label>
+     <button type="button" name="" id="" class="btn btn-danger btn-sm pl-2 pr-2">Subcribe</button>
+   </ion-item>
+  <ion-item class="ion-no-padding" lines='none'>
+     <p class=" ml-2 text-dark">
+      Popular
+  </p>      
+<small class="text-primary" slot="end" (click)="navTo('UCxN3lKZszErqjhMPvSRTwRg')" >
+  See All
+</small>
+  </ion-item>
+  <div class="text-center">
+    <ion-spinner color="primary" name="crescent" *ngIf="notNetwork"></ion-spinner>
+  </div>
+  <div classs="ion-padding" class="slider">
+    <div  class="slide" *ngFor="let video of playlist" (click)=" openVideo(video)" >
+      <div   style="width: 150px;">
+        
+        <ion-card  style="width: 150px">
+         <img [src]="video.snippet.thumbnails.default.url"  style="width: 100%; height: 100px; object-fit: cover;" alt="" srcset="">
+        
+      </ion-card>
+      <small class="mt-2 text-dark" style="line-height: 16px;">
+        {{ video.snippet.title | shorten: 50: '...'}} 
+          </small>       
+      </div>
+    </div>
+  </div>       
+</ion-list>
+
+  <ion-list>
+    <ion-item class="ion-no-padding" lines='none'>
+        <p slot="start" class=" ml-2 text-dark">
+         Recent
+       </p>   
+       <small class="text-primary" 
+       (click)="navTo('UCBzSloEG3eNMuk21A4fjqdg')" 
+       slot="end">See all</small>
+    </ion-item>
+      
+
+  <div class="slider">
+    <div  class="slide" *ngFor="let video of SwimPlayList">
+      
+      <div class="container-image rounded" > 
+        <img [src]="video.snippet.thumbnails.default.url"  alt="Snow" style="width:100%;height: 100%;object-fit: cover;">
+        <div class="centered">
+          <ion-icon name="play"></ion-icon>
+         </div>
+         <div class="top-left">
+           <img [src]="video.snippet.thumbnails.default.url"
+           style="height: 30px;width: 30px;border-radius: 30px; border: #e0e0e0 1px solid;" 
+           class="" alt="" srcset="">
+          <small class="text-muted"> 
+            {{ video.snippet.channelTitle | shorten: 50: '...'}} 
+           </small>
+        </div>
+         <div class="bottom-left">
+           <small>
+            {{ video.snippet.title | shorten: 50: '...'}} 
+           </small>
+         </div>
+      </div>
+ 
+    </div>
+  </div>    
+  </ion-list>
+ 
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="bubbles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+</ion-content>

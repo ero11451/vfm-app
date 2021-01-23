@@ -1,0 +1,39 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+.list{
+  position:absolute;
+  margin-top: -530px;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #3D3D4D;
+  position:relative;
+}
+.links{
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  .icon{
+    height: 30px;
+    width: 30px;
+  }
+}
+
+// ion-menu {
+//   --ion-background-color: var(--ion-color-primary);
+//   --ion-text-color: var(--ion-color-primary-contrast);
+
+//   ion-toolbar {
+//     --background: var(--ion-color-primary);
+//   }
+
+//   ion-list {/* optional, but it needs when you use gradient as a background color.*/
+//     background: transparent;
+//   }
+// }

@@ -1,0 +1,31 @@
+* {
+    border-box: box-sizing;
+  }
+  svg {
+    width: 100vw;
+    height: 20vh;
+    // border: 5px solid black;
+    // margin-bottom: auto;
+    // position: fixed;
+  }
+  #wave {
+    opacity: 0.4;
+  }
+  
+  #wave2 {
+    fill: black;
+    opacity: 0.1;
+    transform: rotation(45deg);
+  }
+  .bottom{
+   position: fixed;
+  //  width: 50%;
+   bottom: 0px;
+  //  border: 3px solid #8AC007;
+} 
+#circle {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  clip-path: circle(82.9% at 50% 10%);
+}

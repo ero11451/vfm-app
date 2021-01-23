@@ -1,0 +1,30 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/wallet"></ion-back-button>
+    </ion-buttons>
+    <small>Subscription</small>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <div class="m-2">
+       <app-mywallet ></app-mywallet>
+    </div>
+    <ion-item>
+      <!-- <ion-card style="height: 40px;width: 50px;">
+        <img src="assets/images/payment.svg" alt="" srcset="">
+      </ion-card> -->
+      <ion-label>
+            <small class="text-bold">
+        2 Days Access
+      </small><br>
+      <small  class="text-success text-bold">N2000</small>
+      </ion-label>
+  
+      <small class= "btn btn-primary btn-sm" slot="end"> start</small>
+    </ion-item>
+  </ion-list>
+</ion-content>

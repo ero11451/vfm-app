@@ -1,0 +1,161 @@
+<ion-header class="ion-no-border" s>
+  <ion-toolbar>
+    <ion-icon slot="end" name="close"  (click)="close()"  color="primary" class="m-2"></ion-icon>
+    <ion-title>
+      <small>  Fund wallet</small>
+      <!-- <br> -->
+      <!-- <small class="text-muted">credite your wallet</small> -->
+    </ion-title>
+    <!-- <ion-icon  class="ion-margin"slot="end" (click)="close()"  name="close"></ion-icon> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="ion-padding" >
+ 
+    <div class="form-group ">
+      <ion-input  type= "number" placeholder="Amount" 
+      [(ngModel)]="amount"  numbersOnly class="form-control"></ion-input>
+    </div>
+
+
+  <ion-select 
+    id="inputState" placeholder="Select Currency" class="form-control"
+  [(ngModel)]="currency" >
+  <ion-label>Select Currency</ion-label>
+
+    <ion-select-option    value="EUR" >Euro</ion-select-option>
+    <ion-select-option   value = "NGN">NGN</ion-select-option>
+    <ion-select-option   value="USD">USD</ion-select-option>
+  </ion-select>
+ <br>
+<div class="text-center">
+  <ion-button (click)=" makePayment()" expand="block"  
+   type="button">Fund Account</ion-button>
+</div>
+</ion-list>
+
+
+
+  <!-- <ion-segment   (ionChange)="segmentChanged($event)" [(ngModel)]="segment" color="primary">  
+    <ion-segment-button value="0">  
+      <small class="text-bold">Naira</small>  
+    </ion-segment-button>  
+    <ion-segment-button value="1">  
+      <small class="text-bold">Dollar</small>  
+    </ion-segment-button>  
+  </ion-segment> -->
+  
+  <!-- <ion-slides #slides  (ionSlideDidChange)="slideChanged()" scrollbar="true">  
+      <ion-slide>
+        <ion-list style="width: 100% !important;">
+          <ion-card>
+            <ion-item (click)=" makePayment(5000, 'NGN') " class="coin-card" lines="none">
+              <img src="assets/images/wallet1.svg" class ="icon" />
+              <ion-label class="coin-amount ">
+                <small class="sub-title">Fund account with</small>
+                <p class="title">N5,000  </p>  
+              </ion-label>
+              <button class="btn btn-primary btn-sm pl-3 pr-3" slot="end" >Pay</button> 
+            </ion-item>       
+          </ion-card>
+          <ion-card (click)=" makePayment(10000 ,'NGN') ">
+            <ion-item  class="coin-card" lines="none">
+              <img src="assets/images/wallet1.svg" class ="icon" />
+              <ion-label class="coin-amount ">
+                <small class="sub-title">Fund account with</small>
+                <p class="title">N10,000  </p>  
+              </ion-label>
+              <button class="btn btn-primary btn-sm pl-3 pr-3" slot="end" >Pay</button> 
+            </ion-item>       
+          </ion-card>
+          <ion-card (click)=" makePayment(20000 ,'NGN') ">
+            <ion-item  class="coin-card" lines="none">
+              <img src="assets/images/wallet1.svg" class ="icon" />
+              <ion-label class="coin-amount ">
+                <small class="sub-title">Fund account with</small>
+                <p class="title">N20,000  </p>  
+              </ion-label>
+              <button class="btn btn-primary btn-sm pl-3 pr-3" slot="end" >Pay</button> 
+            </ion-item>       
+          </ion-card>
+          <ion-card (click)=" makePayment(25000, 'NGN') ">
+            <ion-item  class="coin-card" lines="none">
+              <img src="assets/images/wallet1.svg" class ="icon" />
+              <ion-label class="coin-amount ">
+                <small class="sub-title">Fund account with</small>
+                <p class="title">N25,000  </p>  
+              </ion-label>
+              <button class="btn btn-primary btn-sm pl-3 pr-3" slot="end" >Pay</button> 
+            </ion-item>       
+          </ion-card>
+          <ion-card (click)=" makePayment(50000, 'NGN') ">
+            <ion-item  class="coin-card" lines="none">
+              <img src="assets/images/wallet1.svg" class ="icon" />
+              <ion-label class="coin-amount ">
+                <small class="sub-title">Fund account with</small>
+                <p class="title">N50,000  </p>  
+              </ion-label>
+              <button class="btn btn-primary btn-sm pl-3 pr-3" slot="end" >Pay</button> 
+            </ion-item>       
+          </ion-card>
+       </ion-list>
+      </ion-slide>
+      <ion-slide>
+        <ion-list style="width: 100% !important;">
+          <ion-card>
+            <ion-item (click)=" makePayment(10 , 'USD') " class="coin-card" lines="none">
+              <img src="assets/images/wallet1.svg" class ="icon" />
+              <ion-label class="coin-amount ">
+                <small class="sub-title">Fund account with</small>
+                <p class="title">$10  </p>  
+              </ion-label>
+              <button class="btn btn-primary btn-sm pl-3 pr-3" slot="end" >Pay</button> 
+            </ion-item>       
+          </ion-card>
+          <ion-card (click)=" makePayment(20, 'USD') ">
+            <ion-item  class="coin-card" lines="none">
+              <img src="assets/images/wallet1.svg" class ="icon" />
+              <ion-label class="coin-amount ">
+                <small class="sub-title">Fund account with</small>
+                <p class="title">$20  </p>  
+              </ion-label>
+              <button class="btn btn-primary btn-sm pl-3 pr-3" slot="end" >Pay</button> 
+            </ion-item>       
+          </ion-card>
+          <ion-card (click)=" makePayment(100 , 'USD') ">
+            <ion-item  class="coin-card" lines="none">
+              <img src="assets/images/wallet1.svg" class ="icon" />
+              <ion-label class="coin-amount ">
+                <small class="sub-title">Fund account with</small>
+                <p class="title">$100  </p>  
+              </ion-label>
+              <button class="btn btn-primary btn-sm pl-3 pr-3" slot="end" >Pay</button> 
+            </ion-item>       
+          </ion-card>
+      
+          <ion-card (click)=" makePayment(200, 'USD') ">
+            <ion-item  class="coin-card" lines="none">
+              <img src="assets/images/wallet1.svg" class ="icon" />
+              <ion-label class="coin-amount ">
+                <small class="sub-title">Fund account with</small>
+                <p class="title">$200  </p>  
+              </ion-label>
+              <button class="btn btn-primary btn-sm pl-3 pr-3" slot="end" >Pay</button> 
+            </ion-item>       
+          </ion-card>
+          <ion-card (click)=" makePayment(500, 'USD') ">
+            <ion-item  class="coin-card" lines="none">
+              <img src="assets/images/wallet1.svg" class ="icon" />
+              <ion-label class="coin-amount ">
+                <small class="sub-title">Fund account</small>
+                <p class="title">$500  </p>  
+              </ion-label>
+              <button class="btn btn-primary btn-sm pl-3 pr-3" slot="end" >Pay</button> 
+            </ion-item>       
+          </ion-card>
+       </ion-list>
+      </ion-slide>
+      </ion-slides>
+  -->
+</ion-content>

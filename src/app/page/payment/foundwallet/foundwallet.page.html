@@ -1,0 +1,79 @@
+<ion-header  class="ion-no-border" >
+  <ion-toolbar style="--background:  rgb(20, 33, 220);">
+    <ion-buttons slot="start">
+      <ion-back-button class="back-btn" defaultHref="tabs/wallet"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title>celebrationcard</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+
+    <div   style="background: rgb(20, 33, 220);" color="primary" >
+<ion-item lines='none' style=" --ion-item-background: rgb(20, 33, 220);;">
+  <div slot="start">
+    
+    <h3 class="text-bold text-light">
+      Give from Bank
+    </h3>
+    
+  </div>
+</ion-item>
+<br>
+ <div 
+ style="
+ background:white;
+ height: 15px; 
+ /* margin-top: 5px; */
+ border-radius: 15px 15px 0px 0px;">
+   
+ </div>
+</div>
+
+
+
+
+<ion-list lines="none" class="ion-padding" >
+    <ion-item class="form-control">
+    
+      <ion-input  type= "number"   placeholder=" Amount "
+      [(ngModel)]="amount"  numbersOnly ></ion-input>
+    </ion-item>
+
+<ion-item  class="form-control mt-2">
+  <ion-label>Select Currency</ion-label>
+  <ion-select 
+    id="inputState"
+  [(ngModel)]="currency" >
+    <ion-select-option    value="EUR" >Euro</ion-select-option>
+    <ion-select-option   value = "NGN">NGN</ion-select-option>
+    <ion-select-option   value="USD">USD</ion-select-option>
+  </ion-select>
+</ion-item>
+  <div class="form-group mt-1">
+    <ion-textarea id="inputState" placeholder="PURPOCE OF GIVING" 
+    [(ngModel)]="Prayerpoints" class="form-control"></ion-textarea>
+  </div>
+<br>
+
+<div class="text-center">
+  <ion-button (click)=" makePayment()" expand="block"  
+   type="button">Fund Account</ion-button>
+</div>
+</ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-item lines="none">
+      <ion-radio  color="primary"  value="grape"></ion-radio>
+        <ion-text class="ml-2">
+          <small class="text-muted">
+            You accept our <strong class="text-primary">Terms and Conditions</strong>
+            and privacy Policy
+          </small>
+        </ion-text>
+    </ion-item>  
+    
+  </ion-toolbar>
+</ion-footer>

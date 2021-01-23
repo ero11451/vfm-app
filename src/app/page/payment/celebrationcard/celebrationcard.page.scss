@@ -1,0 +1,149 @@
+.bottom-div{
+    --background: rgba(5, 5, 71, 0.178) !important;
+    padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+}
+.input{
+    --ion-item-background:#b1c2d85d;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.back-btn  {
+    margin-left: 5px;
+    color: #ad0606;;
+    width: 40px;
+    height: 40px;
+    background-color: #f7b2b2;;
+    border-radius: 3px;
+}
+
+.upload-btn{
+    background-color: white;
+    border: dashed 2px #e0e0e0;
+    height: 55px;
+    width: 100%;
+    ion-icon{
+      font-size: 40px;
+    }
+  }
+  .fileInput {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  .fileInput   label {
+    color: #717171;
+    background-color: white;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  .file-btn{
+    border-radius: 15px;
+    border: solid 3px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    padding: 10px 0px 0px 13px;
+    width: 200px;
+    height: 70px;
+  }
+  .btn-image-uploade{
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px rgba(0, 0, 0, 0.2);
+    color: black;
+    padding: 7px;
+    font-size: 16px;
+    display: flex;
+    cursor: pointer;
+     width: 100%;
+    ion-icon{
+        font-size: 25px;
+      }
+      .sub{
+          font-size: smaller;
+      }
+  }
+
+  ion-label{
+      --color: #959595;
+  }
+
+
+
+  [type="file"] {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    white-space: nowrap;
+    width: 1px;
+  }
+  
+  [type="file"] + label {
+    /* File upload button styles */
+  }
+  
+  [type="file"]:focus + label,
+  [type="file"] + label:hover {
+    /* File upload hover state button styles */
+  }
+  
+  [type="file"]:focus + label {
+    /* File upload focus state button styles */
+  }
+
+  .home-banner{
+    position: relative;
+    text-align: center;
+    color: white;
+    height: 180px;
+    // width: 95%;
+    margin: auto;
+    object-fit: cover;
+    background-color: rgb(28, 62, 112);
+    // border-radius: 5px;
+    .bg {
+      -moz-opacity: 0.5;
+      -khtml-opacity: 0.5;
+      opacity: 0.5 ;
+    }
+    .bg:hover {
+      -moz-opacity: 1;
+      -khtml-opacity: 1;
+      opacity: 0.2 ;
+    }
+    /* Centered textkfldkfs */
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+    /* Top left text */
+  .top-left {
+    position: absolute;
+    top: 22px;
+    left: 25px;
+  }
+  /* Bottom left text */
+  .bottom-left {
+    position: absolute;
+    bottom: 5px;
+    left: 16px;
+    width: 100%;
+    height: 10px;
+    border-radius: 10px 10px 0px 0px;
+  }
+  .bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+  }
+  }

@@ -1,0 +1,43 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons  slot="start">
+      <ion-back-button color="primary" defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title> 
+      <!-- <small class="text-bold">Devotional</small> -->
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<div class="text-center text-bold">
+  <p>Our Devotional</p>  
+</div>
+<br>
+<ion-list>
+  <ion-item [routerLink]="[ '/devonationdetail']" lines="none">
+    <div class="alert alert-primary p-4" role="alert">
+      <strong>01</strong>
+    </div>
+    <div class="text-bold ml-2"> 
+      <p>
+        Lorem ipsum dolor sit amet
+        consectetur adipisicing .
+      </p>
+      <small class="text-primary">read..</small>
+      </div>
+   </ion-item>
+   <br>
+   <ion-item lines="none"> 
+    <div class="alert alert-primary p-4" role="alert">
+      <strong>02</strong>
+    </div>
+    <div class="text-bold ml-2"> 
+      <p>
+        Lorem ipsum dolor sit amet
+        consectetur adipisicing .
+      </p>
+      <small class="text-primary">read..</small>
+      </div>
+   </ion-item>
+</ion-list>
+</ion-content>

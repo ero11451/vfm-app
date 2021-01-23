@@ -1,0 +1,68 @@
+
+<ion-header style="height: 300px;">
+  <ion-toolbar>
+    <br><br>
+      <iframe 
+     [src]="santiziLinke" 
+     width = "100%" 
+     height = "300px" 
+     frameborder="0">
+    Sorry your browser does not support inline frames.
+   </iframe>     
+  </ion-toolbar>
+
+</ion-header>
+<ion-content>
+
+
+
+ 
+  
+<ion-list lines="none">
+   <ion-item  style="--ion-item-background:none;opacity: 0.8;" line="none" *ngFor="let post of posts">
+    <ion-avatar style="height: 30px;width: 30px;">
+      <img src="{{post.authorimage}}" />
+    </ion-avatar>
+    <div style="text-align: left; " class="ml-2">
+        <small class="title mt2 text-dark">{{post.author}} </small>
+        <p class="text-muted">{{post.authorLocation}}</p>
+        <small class="content">{{post.content }}</small>
+    </div>
+   </ion-item>
+</ion-list>
+<ion-fab vertical="top" horizontal="end" color="danger" slot="fixed">
+  <ion-fab-button>
+    <p>3</p>
+  </ion-fab-button>
+
+</ion-fab>
+  <ion-fab vertical="top" horizontal="start" slot="fixed">
+    <div  class="btn btn-sm p-1 pl-2 pr-2 btn-danger">
+      Live 
+    </div>
+    <!-- <div  class="btn btn-sm p-1 pl-2 pr-2 btn-danger">
+      Previous
+    </div> -->
+    
+  </ion-fab>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+ 
+   <form  #blogForm="ngForm" class="commentsection" (ngSubmit)="blogForm.form.valid " >
+     <input
+     [(ngModel)]="postData.content"
+       required  clearInput 
+     type="text" id="lname" placeholder="Make a comment" name="lname"> 
+   <button 
+   style="background-color: transparent !important;"
+   (click)="  saveBlogPost()"
+   [disabled]="!blogForm.valid" type="submit" >
+   <small>   <ion-icon class="icon" name="send"></ion-icon>  </small>
+   
+ </button>
+
+   </form>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,19 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="back-btn " defaultHref="tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <small>Bible</small>
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-list *ngFor="let item of bible ">
+  <ion-item (click)="navTo(item)">
+    <ion-label>{{item.name}}</ion-label>
+  </ion-item>
+</ion-list>
+</ion-content>

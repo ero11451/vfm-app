@@ -1,0 +1,38 @@
+.text-bold{
+    font-weight: 800;
+    color: blue;
+}
+.wallet-card{
+    padding: 3%;
+    margin: 3%;
+    border-radius: 4px;
+    box-shadow: 1px 2px #b9b9bd;
+    ion-icon{
+        font-size: 40px;
+    }
+    .subtitle{
+    }
+    .title{
+        font-weight: bold;
+        font-size: 15px;
+    }
+    img{
+        height: 50px;
+        width: 50px;
+    }
+}  
+
+.input{
+    // --ion-item-background:#b1c2d85d;
+    // margin-bottom: 10px;
+    // border-radius: 5px;
+}
+
+.back-btn  {
+    margin-left: 5px;
+    color: #0d6efd;
+    width: 40px;
+    height: 40px;
+    background-color: #b2cef7;;
+    border-radius: 3px;
+  }

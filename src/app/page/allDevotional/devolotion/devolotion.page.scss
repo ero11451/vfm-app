@@ -1,0 +1,54 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+.home-banner{
+    position: relative;
+    text-align: center;
+    color: white;
+    height: 160px;
+    width: 90%;
+    margin: auto;
+    object-fit: cover;
+    background-color: rgb(28, 62, 112);
+    border-radius: 15px 15px 15px 0px;
+    .bg {
+      -moz-opacity: 0.5;
+      -khtml-opacity: 0.5;
+      opacity: 0.5 ;
+      border-radius: 15px 15px 15px 0px;
+    }
+    .bg:hover {
+      -moz-opacity: 1;
+      -khtml-opacity: 1;
+      opacity: 0.2 ;
+      border-radius: 10px 10px 10px 0px;
+    }
+    /* Centered textkfldkfs */
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+  }
+    /* Top left text */
+  .top-left {
+    position: absolute;
+    top: 22px;
+    left: 25px;
+  }
+  /* Bottom left text */
+  .bottom-left {
+    position: absolute;
+    bottom: 5px;
+    left: 6px;
+    width: 90%;
+    text-align: left;
+  }
+  .bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+  }
+  }

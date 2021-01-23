@@ -1,0 +1,179 @@
+hr {
+    background-color: rgb(235, 235, 235);
+    height: 2px;
+  }
+  *{
+    margin: 0px;
+    padding: 0px;
+  }
+  
+.my-card{
+	text-align: left;
+	.content{
+	  overflow: hidden;
+	  color:black;
+	  font-stretch: normal;
+	  font-style: normal;
+	  line-height: 1.4;
+	  letter-spacing: normal;
+	  text-align: left;
+	  height: fit-content;
+	 }
+	.my-card-footer{
+	   display: grid;
+	   grid-template-columns: auto auto auto;
+	   color: #0074e4;
+	 img{
+		margin-right: 5%;
+		color: #0074e4;
+		height: 15px;
+		width: 15px;
+	  }
+	  font-size: medium;
+   
+	 } 
+   .card-name{
+      font-weight: bolder;
+
+	  small{ 
+		opacity: 0.5;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.26;
+		letter-spacing: normal;
+		color: #222222;
+		text-align: left;
+	  }
+	}
+   .my-card-footer{
+	 border-top:#fdfdfd 1px solid;
+	 border-bottom: 2px solid#fdfdfd;
+   }
+  }
+  .text-bold{
+	  font-weight: 900;
+  }
+  .text-primary{
+    color: #0074e4;
+
+  }
+  .comment-card-footer{
+      color: #0074e4;
+      font-size: small;
+   ion-icon{
+       float: left;
+       color: #0074e4;
+       margin-right: 5%;
+     }
+  }
+  .rounded-img{
+      border-radius: 200px;
+  }
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: 5%;
+  }
+
+  .my-card{
+  .content{
+    overflow: hidden;
+    color:black;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: left;
+    height: fit-content;
+   }
+  .my-card-footer{
+     display: grid;
+     grid-template-columns: auto auto auto;
+     color: #0074e4;
+  ion-icon{
+      margin-right: 5%;
+      color: #0074e4;
+    }
+    font-size: small;
+ 
+   } 
+ .card-name{
+      margin:2% 3% 0% 3%;
+      font-weight: bolder;
+  h2{
+      margin-bottom: -5px;
+      font-weight: bolder;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.28;
+      letter-spacing: normal;
+      text-align: left;
+      color: #0c0c0c;
+    }
+    small{ 
+      opacity: 0.5;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.26;
+      letter-spacing: normal;
+      text-align: left;
+      color: #222222;
+    }
+  }
+  .my-card-footer{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    color: #0074e4;
+    padding: 20px;
+  img{
+     margin-right: 5%;
+     color: #0074e4;
+     height: 15px;
+     width: 15px;
+   }
+   font-size: medium;
+  }
+}
+
+.comment-footer{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  color: #0074e4;
+  
+img{
+   margin-right: 5%;
+   color: #0074e4;
+   height: 20px;
+   width: 20px;
+ }
+ font-size: medium;
+
+}
+
+.content{
+
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.26;
+  letter-spacing: normal;
+  text-align: left;
+  color: #959595;
+ }
+
+
+ .post-user-image{
+  height: 40px;
+  width: 40px;
+  margin-left: 10px;
+}
+.post-image{
+border-radius: 5px;
+ height:200px;
+ width: 100%;
+object-fit: cover;
+}

@@ -1,0 +1,32 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/bible"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+   <small>{{bookName}}</small>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="text-center">
+    
+     <ion-spinner name='crescent' color="primary" *ngIf="!book"></ion-spinner>
+  </div>
+  <ion-grid *ngIf="book">
+    <div *ngFor="let chapter of book?.chapters; let ctp = index">
+      <ion-row *ngFor="let verse of chapter; let vrs = index">
+        
+        <ion-col size="2" >
+          <p>{{ctp+1}}:{{vrs+1}}</p>
+        </ion-col>
+        <ion-col size="10">
+         <span [innerHTML]="verse">
+         </span>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+</ion-content>

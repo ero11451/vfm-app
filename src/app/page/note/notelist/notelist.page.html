@@ -1,0 +1,38 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start" color="primary"> 
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title>notelist</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header class="p-3">
+      <div>
+        <h2 class="text-bold">Note</h2>
+        <small class="text-muted">All notes</small>
+      </div>
+      <!-- <ion-button>See All</ion-button> -->
+    </ion-list-header>
+    <ion-item [routerLink]="[ '/notedetail']">
+      <ion-icon size="large" name="documents" color="warning" class="mr-1"></ion-icon>
+      <div>
+        <p class="text-bold">
+          Lorem ipsum dolor sit ...
+           </p>
+         <!-- <small class="text-primary">See</small><br> -->
+        <small class="text-muted">Today</small>
+      </div>
+      <small class="text-primary" slot="end">see</small>
+    </ion-item>
+
+  </ion-list>
+  <ion-fab vertical="bottom"  [routerLink]="[ '/makenote']" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

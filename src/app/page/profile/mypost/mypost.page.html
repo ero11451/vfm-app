@@ -1,0 +1,24 @@
+<ion-header class="ion-padding ion-no-border">
+  <ion-toolbar>
+    <ion-title><small>
+      Post/testimony
+    </small></ion-title>
+    <ion-icon slot="end" (click)="close()" name="close"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list lines="none" *ngFor="let post of userid">
+  <ion-item>
+    <ion-avatar slot="start">
+      <img [src]="post.authorimage" />
+    </ion-avatar>
+    <ion-label>{{post.author}}</ion-label>
+    <!-- <small slot="end" (click)="viweComment(post.authorId)">view comments</small> -->
+  </ion-item>
+  <ion-item>
+    <small>{{post.content}}</small>
+  </ion-item>
+
+</ion-list>
+</ion-content>

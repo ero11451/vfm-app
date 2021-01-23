@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="27.463" height="27.463" viewBox="0 0 27.463 27.463">
+    <defs>
+        <style>
+            .cls-1{fill:#acacac}
+        </style>
+    </defs>
+    <g id="clock">
+        <g id="Group_3398" data-name="Group 3398" transform="translate(8.74 6.243)">
+            <g id="Group_3397" data-name="Group 3397">
+                <path id="Path_12644" d="M168.762 116.395a1.248 1.248 0 0 0-1.248 1.248v5.824h-3.327a1.248 1.248 0 1 0 0 2.5h4.576a1.248 1.248 0 0 0 1.248-1.248v-7.072a1.248 1.248 0 0 0-1.249-1.252z" class="cls-1" data-name="Path 12644" transform="translate(-162.938 -116.395)"/>
+            </g>
+        </g>
+        <g id="Group_3400" data-name="Group 3400">
+            <g id="Group_3399" data-name="Group 3399">
+                <path id="Path_12645" d="M13.732 0a13.732 13.732 0 1 0 13.731 13.732A13.747 13.747 0 0 0 13.732 0zm0 24.967a11.235 11.235 0 1 1 11.235-11.235 11.248 11.248 0 0 1-11.235 11.235z" class="cls-1" data-name="Path 12645"/>
+            </g>
+        </g>
+    </g>
+</svg>

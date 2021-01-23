@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title></ion-title>
+    </ion-toolbar>
+    
+  <ion-segment   (ionChange)="segmentChanged($event)" [(ngModel)]="segment" color="primary">  
+    <ion-segment-button value="0">  
+      <small class="text-bold">Testimony</small>  
+    </ion-segment-button>  
+    <ion-segment-button value="1">  
+      <small class="text-bold">Celebration</small>  
+    </ion-segment-button>  
+    <ion-segment-button value="2">  
+      <small class="text-bold">Updates</small>  
+    </ion-segment-button>  
+  </ion-segment> 
+</ion-header>
+<ion-content>
+  
+
+<ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">  
+    <ion-slide >
+       <app-testimony></app-testimony>
+     </ion-slide>
+     <ion-slide >
+       <app-celebration></app-celebration>
+      </ion-slide>
+      <ion-slide>
+        <app-updateandevents></app-updateandevents>
+        </ion-slide>
+     </ion-slides>
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content
+    color="primary"
+    pullingIcon="arrow-dropdown"
+    pullingText="Pull to refresh"
+    refreshingSpinner= "crescent"
+    refreshingText="Refreshing...">
+  </ion-refresher-content>
+</ion-refresher>
+</ion-content>

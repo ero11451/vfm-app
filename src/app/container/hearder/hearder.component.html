@@ -1,0 +1,21 @@
+
+<ion-header  class="ion-no-border  " no-border color="primary" >
+  <ion-item  lines="none">  
+    <ion-spinner name="crescent" *ngIf="!nodata" color="primary"></ion-spinner>
+    <ion-avatar  *ngIf="nodata"  slot="start" style="height: 30px;width: 30px;">
+      <img [src]=userImage>
+      </ion-avatar> 
+   <ion-label   *ngIf="nodata" class="name  animated fast fadeInLeft text-bold"> 
+        <small (click)="navProfile()" style=" font-weight: bolder;" class="text-primary">
+        {{userName}}
+        </small>
+   </ion-label>
+   <!-- <ion-icon slot="end" style="font-size: medium;"
+   [routerLink]="['/searchproduct']" routerLinkActive="router-link-active" 
+   color="primary" name="search"></ion-icon> -->
+   <small class="text-danger" [routerLink]="[ '/nosevice']" slot="end">Go live</small>
+   <!-- <small class="text-danger">1:30am </small> -->
+   <ion-img class="hearder-icon" slot="end" (click)="open()"src="assets/images/about.svg"></ion-img>
+   <!-- <ion-menu-button></ion-menu-button>   -->
+   </ion-item>
+</ion-header>

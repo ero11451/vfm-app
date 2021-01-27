@@ -38,7 +38,15 @@ export class SignupPage implements OnInit {
     password: [
       { type: 'required', message: 'Password is required.' },
       { type: 'minlength', message: 'Password must be at least 5 characters long.' }
-    ]
+    ],
+    gender: [
+      { type: 'required', message: 'gender is required.' },
+      { type: 'minlength', message: 'Enter a valid gender.' }
+    ],
+     branch: [
+      { type: 'required', message: 'branch is required.' },
+      { type: 'minlength', message: 'Enter a valid branch.' }
+    ],
   };
 
   constructor(
@@ -58,6 +66,15 @@ export class SignupPage implements OnInit {
       username: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(5),
+      ])),  
+      gender: new FormControl('', Validators.compose([
+        Validators.required,
+      ])),
+      location: new FormControl('', Validators.compose([
+        Validators.required,
+      ])),
+      branch: new FormControl('', Validators.compose([
+        Validators.required,
       ])),
       phonenumber: new FormControl('', Validators.compose([
         Validators.required,
@@ -65,6 +82,7 @@ export class SignupPage implements OnInit {
       ])),
       email: new FormControl('', Validators.compose([
         Validators.required,
+        Validators.email,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
       password: new FormControl('', Validators.compose([
@@ -77,32 +95,31 @@ export class SignupPage implements OnInit {
 tryRegister(value) {
     console.log('this is s the user input data', value)
     this.getUserLocation();
+    this.ion.ionLoading('please wait', 200)
     if (!value.valid) {
-     // tslint:disable-next-line: no-bitwise
-    // if (value.email & value.password & value.username) {
     this.ion.ionLoading('please wait', 1000);
     this.authService.RegisterUser(
       value.email, 
       value.password, 
       value.username, 
       value.phonenumber, 
-      'No country found', 
-      'assets/images/userIcon.svg')
+      value.location, 
+      'assets/images/userIcon.svg',
+      value.branch,
+      value.gender)
       .then(res => {
         console.log(res);
         this.errorMessage = '';
-        this.ion.ionToast('Your account has been created. Please log in.', 2000, 'primary');
-        // this.successMessage = ;
+        this.ion.ionLoading('Your account has been created. Please log in.', 2000);
         this.nav.navigate(['tabs/home'])
       }, err => {
         console.log(err);
         this.errorMessage = err.message;
         this.ion.ionToast(this.errorMessage, 2000, 'danger');
         this.successMessage = '';
-
       }).catch(err => this.ion.ionToast(err ,1000, 'primary' )) 
     }else{
-      this.ion.ionToast('please check your input', 2000, 'primary')
+      this.ion.ionLoading('please check your input', 2000)
     }
     
     // }

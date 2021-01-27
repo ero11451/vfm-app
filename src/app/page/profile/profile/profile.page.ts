@@ -7,7 +7,6 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { interval, Subject } from 'rxjs';
 import { MenuPage } from 'src/app/container/menu/menu.page';
 import { SettingPage } from 'src/app/container/setting/setting.page';
-import { FollowService } from '../../../db/service/follow.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../db/service/auth.service';
 import { UserService } from '../../../db/service/user.service';
@@ -28,7 +27,6 @@ import { UserDetailComponent } from '../user-detail/user-detail.component';
 })
 export class ProfilePage implements OnInit {
   constructor(
-    private follow: FollowService,
     private userSer: UserService,
     private menuController: MenuController,
     private auth: AuthService,
@@ -38,7 +36,6 @@ export class ProfilePage implements OnInit {
     private modalController: ModalController,
     private postSrv: AllpostService,
   ) {
-    this.checkCurrentUser();
    }
   posts: any;
   postNumber:number;
@@ -49,10 +46,6 @@ export class ProfilePage implements OnInit {
   userEmail: string;
   isCurrentUser: boolean;
   userid: string;
-  following?: any;
-  followers?: any;
-  userFollowers: any;
-  userFollowing: any;
   isFollowing: boolean;
   currentuid;
   isLoggedIn: boolean;
@@ -80,33 +73,9 @@ export class ProfilePage implements OnInit {
     // console.log('followes', this.followers , 'following', this.following)
     this.getUserData();
     this.getpost();
-    this.getFollowData();
   }
 
-  getFollowData() {
-    this.follow.getFollowers(this.userid).subscribe(
-      followers => {
-        this.followers = followers.length;
-        this.userFollowers = followers;
-        console.log('this are my followers' ,followers);
-      });
-    this.follow.getFollowing(this.userid).subscribe(
-      following => {
-        this.following = following.length;
-        console.log(following);
-        this.userFollowing = following;
-      });
-  }
-
-  followUser() {
-    if (this.isFollowing) {
-      this.isFollowing = false;
-      this.follow.unfollow(this.userid);
-    } else {
-      this.isFollowing = true;
-      this.follow.follow(this.userid, this.userDisplayName,this.userImage);
-    }
-  }
+ 
   menu(){
     this.menuController.open();
   }
@@ -118,8 +87,6 @@ getUserData(){
      this.status = user.status;
      this. userEmail = user.email;
      this.userImage = user.userImage;
-     this.followers = user.Followers;
-     this.following = user.Followings;
      this.walletBallance = user.walletBallance;
   });
 }
@@ -133,52 +100,27 @@ getpost(){
     });
 }
 
-getDetele(postid){
+ getDetele(postid){
   this.postSer.deletePost(postid);
+ }
+
+  uploadFile(image){
+    this.ion.presentModal(UploadfileComponent, this.currentuid, 'bottom-model');     
+  }
+
+  async openimage(image){
+  const modal = await this.modalController.create({
+    component: ViewerModalComponent,
+    componentProps: {
+      src: image
+    },
+    cssClass: 'ion-img-viewer',
+    keyboardClose: true,
+    showBackdrop: true
+  });
+
+  return await modal.present();
 }
-
-checkCurrentUser() {
-    this.auth.getAuthState()(
-      user => {
-        if (user) {
-          if (this.userid) {
-            this.isLoggedIn = true;
-            this.currentuid = user.uid;
-            console.log('current user id', this.currentuid);
-            if (this.userid === user.uid) {
-              this.isCurrentUser = true;
-            }
-            this.follow.isFollowing(this.userid, this.currentuid).subscribe(
-              followinguser => {
-                if (followinguser[0]) {
-                  this.isFollowing = true;
-                }
-            });
-          }
-        } else {
-          this.isLoggedIn = false;
-        }
-    });
-  }
- async uploadFile(image){
-    if (this.checkCurrentUser) {
-    this.ion.presentModal(UploadfileComponent, this.currentuid, 'bottom-model'); 
-    }
-    else {
-      const modal = await this.modalController.create({
-        component: ViewerModalComponent,
-        componentProps: {
-          src: image
-        },
-        cssClass: 'ion-img-viewer',
-        keyboardClose: true,
-        showBackdrop: true
-      });
-   
-      return await modal.present();
-    }
-  }
-
   async myPost(){
     this.ion.presentModal(MypostPage, this.posts, ''); 
     console.log(this.posts)

@@ -12,18 +12,15 @@
 
   <ion-item lines="none" >
     <div>
-      <p class="text-bold">Happy to see you</p> 
-      <small class="text-muted">signUp to continue</small>  
+      <p class="text-bold">signUp to continue</p> 
+      <small class="text-muted">Happy to see you.</small>  
     </div>
   </ion-item>
   <form class="form" [formGroup]="validations_form" (ngSubmit)="tryRegister(validations_form.value)">
+
     <ion-item class="input ">
       <ion-label position="floating" color="primary"> <small>Your Name</small> </ion-label>
       <ion-input type="text" formControlName="username"  required></ion-input>
-    </ion-item>
-    <ion-item class="input">
-      <ion-label position="floating" color="primary"> <small>Phone Number</small> </ion-label>
-      <ion-input  numbersOnly type="number"  formControlName="phonenumber"  required></ion-input>
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.username">
@@ -33,6 +30,7 @@
         </div>
       </ng-container>
     </div>
+   
     <ion-item class="input mt-2 mb-2">
       <ion-label position="floating" color="primary"> <small>Email</small> </ion-label>
       <ion-input type="text" formControlName="email"></ion-input>
@@ -45,6 +43,7 @@
         </div>
       </ng-container>
     </div>
+ 
     <ion-item class="input">
       <ion-label position="floating" color="primary"> <small>Password</small> </ion-label>
       <ion-input type="password" formControlName="password" required></ion-input>
@@ -57,9 +56,48 @@
         </div>
       </ng-container>
     </div>
-  
+    <ion-item class="input ">
+      <ion-label position="floating" color="primary"> <small>Your location</small> </ion-label>
+      <ion-input type="text" formControlName="location"  required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.username">
+        <div class="error-message"
+          *ngIf="validations_form.get('location').hasError(validation.type) &&
+           (validations_form.get('location').dirty || validations_form.get('location').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+   
+    <ion-item>
+      <ion-label>Your branch</ion-label>
+      <ion-select value="G.R.a" multiple="flase"
+      formControlName="branch"
+      required 
+      [(ngModel)]="validations_form.value.branch" 
+      placeholder="your branch">
+        <ion-select-option value="gra">G.R.A</ion-select-option>
+        <ion-select-option value="skpomba">Skpomba</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select value="male" [(ngModel)]="validations_form.value.gender" 
+      formControlName="gender" multiple="false" placeholder="Gender">
+        <ion-select-option value="Male">Male</ion-select-option>
+        <ion-select-option value="Famale">Female</ion-select-option>
+      </ion-select>
+    </ion-item>
 
-  <div class="text-center ">
+    <ion-item class="input">
+      <ion-label position="floating" color="primary"> <small>Phone Number</small> </ion-label>
+      <ion-input  numbersOnly type="number"  formControlName="phonenumber"  required></ion-input>
+    </ion-item>
+  
+ 
+
+  <div class="text-center" *ngIf="validations_form.valid">
     <div class="buttons">
       <button  
        type="submit"

@@ -31,13 +31,12 @@ export const snapshotToArray = (snapshot: any) => {
 };
 declare var google;
 @Component({
-  selector: 'app-location',
-  templateUrl: './location.page.html',
-  styleUrls: ['./location.page.scss'],
+  selector: 'app-homecell',
+  templateUrl: './homecell.page.html',
+  styleUrls: ['./homecell.page.scss'],
 })
+export class HomecellPage implements OnInit {
 
-
-export class LocationPage implements OnInit {
 
   private updateSubscription: Subscription;
 
@@ -120,9 +119,9 @@ export class LocationPage implements OnInit {
       });
       google.maps.event.addListener(marker, 'click', function() {
         // tslint:disable-next-line:max-line-length
-        infowindow.setContent('<h6>' 
+        infowindow.setContent('<h3>' 
         + zones.zonename
-         + '</h6><p>: ' 
+         + '</h3><p>Zonal Cordinator: ' 
         + zones.cordinator + '<br>Phone number: ' + zones.celllocation + '</p>');
         infowindow.open(map, this);
       });
@@ -133,5 +132,4 @@ export class LocationPage implements OnInit {
   }
 
   cell(){}
-
 }

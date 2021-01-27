@@ -1,23 +1,37 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/notelist"></ion-back-button>
+      <ion-back-button class="back-btn" defaultHref="tabs/community"></ion-back-button>
     </ion-buttons>
-    <ion-title></ion-title>
+    <ion-title>
+      <small>Note</small>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<ion-item>
-<ion-label position="floating">Make a note</ion-label>
-  <ion-textarea  rows="30"></ion-textarea>
-</ion-item>
-</ion-content>
 
-<ion-footer>
-  <ion-toolbar>
-    <ion-button  expand="block"  shape="round">
-      Save
-    </ion-button>
-  </ion-toolbar>
-</ion-footer>
+  
+ 
+    <!-- <div class="note">Add Photo/Video</div> -->
+    
+  <form   #blogForm="ngForm" (ngSubmit)="blogForm.form.valid && saveBlogPost()" accept-charset="UTF-8" novalidate>
+  
+    
+      <ion-item lines=none no-padding class="darklist">
+        <ion-textarea name="postContent" [(ngModel)]="notesData.content"
+        required  rows="10" clearInput 
+         class="title " placeholder="What on your mind"></ion-textarea>
+      </ion-item>
+ 
+   
+    <div class="m-1">
+      <button class="btn btn-primary btn-block btn-outline"
+      (click)="  saveBlogPost()"
+      [disabled]="!blogForm.valid" type="submit"
+      type="button">save</button>
+      </div>
+
+  </form>
+
+</ion-content>

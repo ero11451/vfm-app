@@ -1,57 +1,33 @@
 
 import { Component, OnInit } from '@angular/core';
-import {  MenuController,  NavController, Platform } from '@ionic/angular';
 import { Observable, Subject } from 'rxjs';
-import { IonhelperService } from 'src/app/helper/ionhelper.service';
-import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
-import { DomSanitizer } from '@angular/platform-browser';
-import { YoutubeService } from 'src/app/allapi/youtube.service';
-import { ConnectionStatus, NetworkService } from '../../helper/network.service';
-import { AllpostService } from 'src/app/db/service/post.service';
-import { UserService } from 'src/app/db/service/user.service';
-import { takeUntil } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { NativehelpService } from 'src/app/helper/nativehelp.service';
 // import { Flutterwave } from 'flutterwave-node-v3';
-
+interface Banner {
+  image: any;
+  id:any;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  onlineUsers;
-  notNetwork: boolean;
-  channelId = 'UCBzSloEG3eNMuk21A4fjqdg';
-  playlists: Observable<any>;
-  playlist: Observable<any>;
-  videos: Observable<any[]>;
-  playlistId = 'BzSloEG3eNMuk21A4fjqdg';
-  testimonies;
-  testimoniesNumber;
-  navigate: any;
-
-  private unsubscribe$ = new Subject<void>();
-  constructor(
-    private youtube: YoutubeVideoPlayer,
-    private ion: IonhelperService,
-    private list: YoutubeService,
-    public sanitizer: DomSanitizer,
-    private plt: Platform,
-    public navCtrl: NavController,
-    private networkSer: NetworkService,
-    private blogService: AllpostService,
-    private menuController: MenuController,
-    private users: UserService,
-    ) {
-
-
-     }
  
-    menu(){
-      this.menuController.open()
-    }
-   
+
+  constructor(
+    private afs: AngularFirestore,) { }
+
+  liveCollectionRef: AngularFirestoreCollection<Banner[]>;
+  Data
+
   ngOnInit() {
-    this.sideMenu()
+    this.liveCollectionRef = this.afs.collection('homebenner');
+     this.liveCollectionRef.valueChanges().subscribe(d =>  {
+      this.Data = d
+      console.log('data', d)});
+    // console.log(this.liveID)
    }
 
 
@@ -60,8 +36,7 @@ export class HomePage implements OnInit {
  
 
 
-sideMenu() {
-  this.navigate =
+  navigate =
   [
     {
       title : 'Wallet',
@@ -129,7 +104,7 @@ sideMenu() {
   url: '/tabs/devotion'
 },
   ];
-}
+
 
 
 

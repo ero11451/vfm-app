@@ -63,7 +63,7 @@ export class GivingPage implements OnInit {
  
 tryRegister(value) {
   if (value.amount > this.walletBallance) {
-    this.ion.ionToast('your message was not successful', 3000 , 'danger')
+    this.ion.ionAlert('error', 'insufficient funds' , 'please fund you wallet')
   }
   else{
       this.walletSer.defundWallet(value.amount)

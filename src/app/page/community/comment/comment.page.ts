@@ -70,7 +70,7 @@ export class CommentPage implements OnInit {
       this.author = result.author;
       this.time = result.createdDate;
       this.content = result.content;
-      this.postImage = result.photo;
+      // this.postImage = result.photo;
       this.authorImage = result.authorimage;
       }
       );

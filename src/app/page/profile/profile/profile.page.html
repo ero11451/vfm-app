@@ -96,7 +96,24 @@ border-radius: 10px;
      </ion-label>
       </ion-item> 
     </div> 
-  </ion-col>
+  </ion-col >
+  <ion-col size="6">
+    <div   style="background: white;" color="primary" >
+  
+      <ion-item class="m-2" 
+      [routerLink]="['/my-purchase', userid]" 
+      lines="none" style="
+    border: solid 1px rgb(217, 217, 219);
+    margin: 10px;
+    border-radius: 10px;
+    --ion-item-background: linear-gradient(2deg, #fefeff 29%, #f8f9fe 96%);">    
+    <ion-icon slot="start" name="cart-outline" size="large" color="primary"></ion-icon>
+     <ion-label class=" ml-2">
+         <p class="text-bold text-primary " >  My purchase</p>
+     </ion-label>
+      </ion-item> 
+    </div> 
+  </ion-col >
   <ion-col size="6">
     <div   style="background: white;" color="primary" >
       <ion-item class="m-2" 
@@ -150,31 +167,8 @@ border-radius: 10px;
   </ion-col>
 </ion-row>
  
-
-
-        <ion-row *ngFor="let user of  userFollowers  "  style="width: 100% !important;padding: 0px;" >
-          <ion-col size="4">
-            <ion-card class="container-image">
-              <img [src]='user.userImage' alt="Snow" style="width:100%;height: 100%;object-fit: cover;">
-              <div class="bottom-left ion-text-start">
-                 <small class="text-bold "> {{user.userName}} </small>
-              </div>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      
  
-        <ion-row style="width: 100%;">
-          <ion-col  *ngFor="let user of userFollowing" size="4">
-            
-              <img [src]="user.userImage" alt="image" style="width:100px;height:130px;margin: 2px; border-radius: 5px; object-fit: cover;">
-              <!-- <div class="bottom-left ion-text-start">
-                 <small class="text-bold ">  {{ user.userName  }} </small>
-               
-                </div> -->
-            
-          </ion-col>
-        </ion-row>
+   
   
         <!-- <div  *ngFor="let post of posts" >
         <ion-card  class="m-2 p-2">  

@@ -3,12 +3,10 @@ import { Component } from '@angular/core';
 import { MenuController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { NetworkService } from './helper/network.service';
 import { IonhelperService } from './helper/ionhelper.service';
 import { LogoutPage } from './container/logout/logout.page';
-import { Router } from '@angular/router';
 import { NativehelpService } from './helper/nativehelp.service';
-// import { timer } from 'rxjs/internal/observable/timer';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -51,8 +49,12 @@ export class AppComponent {
         title : 'Feedback',
         url   : `/feedback`,
         icon  : 'chatbox'
+      },  
+      {
+        title : 'Note',
+        url   : '/notelist', 
+        icon  : 'clipboard-outline'  
       },
-   
       {
         title : 'Live service',
         url   : '/noservice', 
@@ -108,6 +110,9 @@ export class AppComponent {
 
   openWebpage(page) {
     this.menuController.close().then(u => this.nativeHelp.openWebPage(page))
+  }
+  callnumber(number){
+    this.nativeHelp.openPhone(number)
   }
   
 }

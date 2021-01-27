@@ -1,0 +1,22 @@
+#map{
+    height: 100%;
+    width: 100%;
+    // background-color: lightgray;
+}
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+}
+
+.back-btn  {
+    margin-left: 5px;
+    color: #370686;;
+    width: 40px;
+    height: 40px;
+    background-color: #9dbdf7;;
+    border-radius: 3px;
+}
+
+agm-map {
+    height: 300px;
+  }

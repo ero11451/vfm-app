@@ -6,8 +6,12 @@
 <ion-content >
 <ion-slides mode="ios" pager="ios" scrollbar="ios">
   <ion-slide>
+    <img  class="bg" src ="assets/vfm-bg.jpg" 
+    alt="Snow" style="width:100%;height: 100%;object-fit: cover;">
+  </ion-slide>
+  <ion-slide  *ngFor="let item of Data">
     <div [routerLink]="['/tabs/service']"   class="home-banner">
-      <img  class="bg" src ="assets/vfm-bg.jpg" 
+      <img  class="bg" src = {{item.image}} 
       alt="Snow" style="width:100%;height: 100%;object-fit: cover;">
       <!-- <div class="centered">
       <img src="assets/homeicon/play.svg" alt="" srcset="">  

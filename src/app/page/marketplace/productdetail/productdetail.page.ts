@@ -5,8 +5,18 @@ import { WbserviceService } from 'src/app/allapi/wbservice.service';
 import { AuthService } from 'src/app/db/service/auth.service';
 import { UserService } from 'src/app/db/service/user.service';
 import { IonhelperService } from 'src/app/helper/ionhelper.service';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import {  File } from '@ionic-native/file/ngx/index';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+// import { File } from '@ionic-native/file';
+import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
+
 
 import {Flutterwave, InlinePaymentOptions, PaymentSuccessResponse} from "flutterwave-angular-v3";
+import { LoadingController, Platform } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { formatDate } from '@angular/common';
+import { Product } from 'src/app/db/model/product';
 @Component({
   selector: 'app-productdetail',
   templateUrl: './productdetail.page.html',
@@ -22,7 +32,7 @@ export class ProductdetailPage implements OnInit {
   sale_price
   stock_status
   regular_price
-
+  fileLcationOnline
   // payment
   
   username :string
@@ -31,14 +41,21 @@ export class ProductdetailPage implements OnInit {
   displayImage:string
   phoneNumber:number
   constructor(
+    public loadingCtrl: LoadingController,
     private activatedRoute: ActivatedRoute,
     private postSrvc: WbserviceService,
-
     private flutterwave: Flutterwave ,
     private ion : IonhelperService,
     public userSer: UserService,
-   public auth: AuthService,) {
-  
+    private file: File,
+    private transfer:FileTransfer,
+    private docOpen: DocumentViewer,
+    private plateform:Platform,
+   public auth: AuthService,
+   
+   private  db: AngularFirestore,
+   ) {
+      this.getCurrentUser()
       this.loadData()
     }
   ngOnInit() {
@@ -50,10 +67,11 @@ export class ProductdetailPage implements OnInit {
          this.description = res;
          this.name = res.name
          this.image = res.images[0].src
-         this.price = res.price
+         this.price = res.price 
          this.sale_price = res.sale_price
          this.stock_status = res.stock_status
          this.regular_price  = res.regular_price
+         this.fileLcationOnline = res.downloads[0].file
          console.log('this is the deatiel', res)
        })
    }
@@ -68,7 +86,7 @@ export class ProductdetailPage implements OnInit {
  
   customizations = {
     title: 'Voice OF freedom', 
-    description: 'Give to God', 
+    description: `Pay for this item `, 
     logo: 'https://flutterwave.com/images/logo-colored.svg'}
  
  
@@ -80,15 +98,13 @@ export class ProductdetailPage implements OnInit {
          name: this.username, 
          email: this.userEamil, 
          phone_number: this.phoneNumber}
-       if (!this.amount && !this.Prayerpoints  && !this.currency ) {
-        this.ion.ionToast('enter a value', 2000, 'primary')
-       }else{
+       
         console.log(this.amount, this.Prayerpoints, this.currency)
         const  paymentData: InlinePaymentOptions = {
            public_key: this.publicKey,
            tx_ref: this.generateReference(),
            amount: this.price,
-           currency: this.currency,
+           currency: 'USD',
            payment_options: 'card,ussd',
            redirect_url: '',
            meta: meta,
@@ -99,11 +115,30 @@ export class ProductdetailPage implements OnInit {
            callbackContext: this
        }
        this.flutterwave.inlinePay(paymentData)
-     }
- 
-     }
-     makePaymentCallback(response: PaymentSuccessResponse): void {
+      }
+
+      today = new Date();
+
+      makePaymentCallback(response: PaymentSuccessResponse): void {
        console.log("Payment callback", response);
+       this.db.collection<Product>('storeSaleses').add({
+        // photo : this.postImage ,
+        productDetail: this.description,
+        purchaseDate: formatDate(this.today, 'hh:mm:ss a', 'en-US', '+0530'),
+        productImage: this.displayImage,
+        productId:this.pid,
+        buyerId:this.userId,
+        buyerEmail:this.userEamil,
+        price:this.price,
+      }).then(data => {
+        this.ion.ionLoading('your post was succesfull', 2000);
+        console.log(data);
+         this.db.doc('post/' + data.id).update({productId:data.id,});
+       } ).catch(error => {
+          console.log('error',error);
+          this.ion.ionLoading('there was an error with your request', 2000);
+      });
+     
      }
      closedPaymentModal(): void {
        console.log('payment is closed');
@@ -134,5 +169,20 @@ export class ProductdetailPage implements OnInit {
  
          }
      });
-   }
+   
+  }
+
+  downloadFile(){
+    let path = null
+    if (this.plateform.is('ios')) {
+      path = this.file.documentsDirectory
+    }else{
+      path = this.file.dataDirectory
+    }
+    const transfer = this.transfer.create()
+     transfer.download(this.fileLcationOnline, path + 'vfmebook').then(entry => {
+       let url = entry.toURL();
+       this.docOpen.viewDocument(url,'application/pdf',{})
+     })
+  }
 }

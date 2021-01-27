@@ -8,6 +8,8 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { File } from '@ionic-native/file/ngx/index';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +22,8 @@ import { AngularFireModule } from '@angular/fire';
 import {NgPipesModule} from 'ngx-pipes';
 
 import { Camera, } from '@ionic-native/camera/ngx';
+
+import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
 
 
 import * as firebase from 'firebase/app';
@@ -38,6 +42,7 @@ import { DropzoneDirective } from './provider/dropzone.directive';
 import { IonicStorageModule } from '@ionic/storage';
  
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx'
+import { CallNumber } from '@ionic-native/call-number/ngx';
 firebase.default.initializeApp(environment.firebaseConfig);
 
 
@@ -54,14 +59,13 @@ firebase.default.initializeApp(environment.firebaseConfig);
     AppRoutingModule,
     MenuPageModule,
     NgPipesModule,
-
     FlutterwaveModule,
-
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     IonicStorageModule.forRoot(),
+
   ],
   providers: [
     StatusBar,
@@ -73,8 +77,11 @@ firebase.default.initializeApp(environment.firebaseConfig);
     Geolocation,
     NativeGeocoder,
     Network,
-
-    InAppBrowser
+    File,
+    FileTransfer,
+    DocumentViewer,
+    InAppBrowser,
+    CallNumber,
   ],
   bootstrap: [AppComponent]
 })

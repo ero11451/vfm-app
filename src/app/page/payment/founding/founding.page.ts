@@ -38,6 +38,7 @@ export class FoundingPage implements OnInit {
     private flutterwave: Flutterwave ,
     private userSer : UserService,
     public authFire: AngularFireAuth,
+    private ion: IonhelperService,
     private modalController: ModalController
     ) { }
 
@@ -68,9 +69,14 @@ export class FoundingPage implements OnInit {
    logo: 'https://flutterwave.com/images/logo-colored.svg'}
 
 
-    makePayment(amount, currency)  {
+    makePayment()  {
+     if (this.amount < 999 ) {
+      return  this.ion.ionLoading('You can only fund your wallet with 1000 or more',3000 )
+     }
+     if (!this.currency) {
+      return  this.ion.ionLoading('please select a currency', 2000)
+     }else{
      const  meta = {'counsumer_id': this.userId, 'consumer_mac': 'kjs9s8ss7dd'}
-
      const  customerDetails = { 
         name: this.userName, 
         email: this.userEmail, 
@@ -80,8 +86,8 @@ export class FoundingPage implements OnInit {
       const  paymentData: InlinePaymentOptions = {
           public_key: this.publicKey,
           tx_ref: this.generateReference(),
-          amount: amount,
-          currency: currency,
+          amount: this.amount,
+          currency: this.currency,
           payment_options: 'card,ussd',
           redirect_url: '',
           meta: meta,
@@ -92,8 +98,9 @@ export class FoundingPage implements OnInit {
           callbackContext: this
       }
       this.flutterwave.inlinePay(paymentData)
-      if (currency == 'NGN')   this.amount = amount 
-      if (currency ==  'USD')  this.amount = amount * 350
+      if (this.currency == 'NGN')   this.amount = this.amount 
+      if (this.currency ==  'USD')  this.amount = this.amount * 350
+    }
     }
     
     makePaymentCallback(response: PaymentSuccessResponse): void {

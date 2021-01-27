@@ -1,50 +1,52 @@
 
 <ion-app>
   <ion-menu side="start" menuId="first"  contentId="content">    
-    <ion-content  style="--background: url('assets/bg-images/menu.jpg'); background-size: cover;">  
+    <ion-content  style="--background: url('assets/bg-images/menu.jp'); background-size: cover;">  
       <ion-menu-toggle auto-hide="false">
-        <ion-list lines="none"  style="background: url('assets/bg-images/menu.jpg'); background-size: cover;">
-          <ion-item  class="ion-no-padding ion-no-margin" style="background: none;">
+        <ion-list lines="none"  style="background: url('assets/bg-images/men.jpg'); background-size: cover;">
+        
             <div class="text-center">
-              <img src="assets/icon/logo.png"style="height: 60px;width: 100px;object-fit:  contain;" ><br>
-              <img src="assets/icon/bishopimage.png"style="height: 130px;width: 100% !important;object-fit:cover" >
-            </div>
-          </ion-item>
+              <img src="assets/icon/logo.png"style="height: 70px;width: 100px;object-fit:  contain;" >
+             </div>
             <ion-item style="--ion-background-color: none;" [routerLink]="pages.url"  *ngFor="let pages of navigate"
              lines=none routerDirection="forward">  
               <ion-icon class="icon" [src]="pages.icon" 
               [name] = 'pages.icon'></ion-icon>
-              <small class="ml-3  text-bold ">
+              <small class="ion-margin-start  text-bold ">
               {{pages.title}}  
               </small>  
             </ion-item>
             <ion-item    style="--ion-background-color: none;"  (click)="logOut()">  
-              <ion-icon name="log-out" size="large"></ion-icon>
-              <small class="ml-3  text-bold">
+              <ion-icon name="log-out" class="icon" ></ion-icon>
+              <small class="  text-bold">
                 Logout
               </small>  
             </ion-item><br>
-            <ion-row  style="--ion-background-color: none;" >
-              <ion-col size="2" class="ml-3">
-                <ion-icon (click)="openWebpage('https://www.facebook.com/vfmglobal/')" name="logo-facebook" size='large'  ></ion-icon>
-              </ion-col>
-              <ion-col size="2">
-                <ion-icon name="logo-twitter" (click)="openWebpage('https://www.twitter.com/vfmglobal/')" size='large'></ion-icon>
-              </ion-col>
-              <ion-col size="2">
-                <ion-icon name="logo-instagram" (click)="openWebpage('https://www.Instagram.com/vfmglobal/')" size= "large"></ion-icon>
-              </ion-col>
-              <ion-col size="2">
-                <ion-icon name="call" (click)="openWebpage('http//:google.com')" size='large'></ion-icon>
-              </ion-col>
-              <ion-col size="2">
-                <ion-icon name="logo-whatsapp" (click)="openWebpage('https://wa.link/plqrlm')" size='large'></ion-icon>
-              </ion-col>
-            </ion-row>
+          
         </ion-list>
      </ion-menu-toggle>
     </ion-content>  
-
+<ion-footer>
+  <ion-toolbar>
+    <ion-row  style="--ion-background-color: none;" >
+      <ion-col size="2" class="ml-3">
+        <ion-icon (click)="openWebpage('https://www.facebook.com/vfmglobal/')" name="logo-facebook" class="icon"  ></ion-icon>
+      </ion-col>
+      <ion-col size="2">
+        <ion-icon name="logo-twitter" (click)="openWebpage('https://www.twitter.com/vfmglobal/')" class="icon"></ion-icon>
+      </ion-col>
+      <ion-col size="2">
+        <ion-icon name="logo-instagram" (click)="openWebpage('https://www.Instagram.com/vfmglobal/')" class="icon"></ion-icon>
+      </ion-col>
+      <ion-col size="2">
+        <ion-icon name="call" (click)="callnumber('09057779505')" class="icon"></ion-icon>
+      </ion-col>
+      <ion-col size="2">
+        <ion-icon name="logo-whatsapp" (click)="openWebpage('https://wa.link/plqrlm')" class="icon"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
   </ion-menu>  
 
   <ion-router-outlet  Id="content"></ion-router-outlet>

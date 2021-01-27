@@ -1,14 +1,10 @@
 
 export class Product {
     productId: string;
-    detail: string;
-    productPhoto: string;
-    author: string;
+    productDetail: string;
+    productImage: string;
+    buyerId:string;
     price: number;
-    createdDate: any;
-    approved: any;
-    reviews:number;
-    constructor() {
-    this.detail = '';
-    }
+    purchaseDate: any;
+    buyerEmail:string
     }

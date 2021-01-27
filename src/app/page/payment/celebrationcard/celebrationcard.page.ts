@@ -2,23 +2,18 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, LoadingController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { count, finalize } from 'rxjs/operators';
+import { GiftCard } from 'src/app/db/model/giftcard';
 import { AuthService } from 'src/app/db/service/auth.service';
 import { UserService } from 'src/app/db/service/user.service';
 import { WalletServiceService } from 'src/app/db/service/wallet-service.service';
 import { IonhelperService } from 'src/app/helper/ionhelper.service';
-class Post{
-   message: string;
-   receiverName:string;
-   SenderName: string;
-   userPhoto :string;
-   authorId:string;
-   createdDate:string;
-   approved:boolean
-}
+import { FoundingPage } from '../founding/founding.page';
+
+
 @Component({
   selector: 'app-celebrationcard',
   templateUrl: './celebrationcard.page.html',
@@ -34,42 +29,36 @@ export class CelebrationcardPage implements OnInit {
   userEamil: string;
   login: boolean;
   // post
-  postData = new Post();
-  walletBallance: number;
-  receiverName: string;
-  message: string;
+  postData = new GiftCard();
+
+  postContent: string;
   postImage: string = null;
   postViews: number;
-  likes: number;
+  likes: any;
   loading: boolean;
 
-  posts: Observable<Post[]>;
-  postCollectionRef: AngularFirestoreCollection<Post[]>;
+  posts: Observable<GiftCard[]>;
+  postCollectionRef: AngularFirestoreCollection<GiftCard[]>;
 
   today = new Date();
-  uploadaccess:boolean ;
+
   uploadPercent: number ;
   downloadURL: Observable<string>;
   constructor(
     private storage: AngularFireStorage,
     // private afAuth: AngularFireAuth,
+    private walletSerive: WalletServiceService,
+    private router: Router,
     private  db: AngularFirestore,
     private ion: IonhelperService,
     public userSer: UserService,
     public auth: AuthService,
-    private actionSheetController: ActionSheetController,
-    private loadingController: LoadingController,
-    private router : Router,
-    private walletSer: WalletServiceService
+    private loadingController: LoadingController
      ) {
        this.getCurrentUser();
-
-       
      }
 
   OnInit(){ 
-    console.log(this.walletBallance)
-    if (this.walletBallance < 100)  this.uploadaccess = false
       }
 
   ngOnInit(){}
@@ -78,15 +67,14 @@ export class CelebrationcardPage implements OnInit {
     this.auth.getAuthState()(
       user => {
         if (user) {
+          console.log('user information', user)
           this.userSer.retrieveUserDocument(user.uid).subscribe(
             userDoc => {
-              console.log('user information', userDoc)
               if (userDoc) {
                 this.displayImage = userDoc.userImage;
                 this.username = userDoc.displayName;
                 this.userEamil = userDoc.email;
                 this.userId = userDoc.uid;
-                this.walletBallance = userDoc.walletBallance
               }
             });
         } else {
@@ -97,18 +85,21 @@ export class CelebrationcardPage implements OnInit {
 
   saveBlogPost() {
     this.ion.ionLoading('please wait', 500),
-    this.db.collection<Post>('Giftcard').add({
-      receiverName: this.receiverName,
-      SenderName: this.username,
-      userPhoto : this.postImage ,
+    this.db.collection<GiftCard>('GiftCards').add({
+      reciver : this.postData.reciver,
+      photo : this.postImage ,
+      author: this.postData.author,
       authorId: this.userId,
       createdDate: formatDate(this.today, 'hh:mm:ss a', 'en-US', '+0530'),
-      approved: false,
-      message: this.message
+      postId: '',
+      type:this.postData.type,
+      date:this.postData.date
     }).then(data => {
       this.ion.ionLoading('your post was succesfull', 2000);
       console.log(data);
-      this.postData.message = '';
+      this.walletSerive.defundWallet(100)
+       this.db.doc('post/' + data.id).update({postId:data.id,});
+       this.router.navigate(['/tabs/community'])
       this.postImage = '';
      } ).catch(error => {
         console.log('error',error);
@@ -125,7 +116,7 @@ uploadPostImage(event) {
     this.loading = true;
     this.presentLoading()
     const file = event.target.files[0];
-    const path = `Giftcard/${file.name}`;
+    const path = `postImage/${file.name}`;
     if ( file.type.split('/')[0] !== 'image') {
       return alert('Only Image Files');
     } else {
@@ -155,49 +146,8 @@ uploadPostImage(event) {
 async presentLoading() {
   const loading = await this.loadingController.create({
     message: 'please wait',
-    spinner: 'bubbles',
-    duration: 4000,
-    
+    spinner: 'bubbles'
   });
   await loading.present();
 }
-
- async presentActionSheet() {
-   const actionSheet = await this.actionSheetController.create({
-     
-     header:'You will be charged #100',
-     buttons: [{
-       text: 'Fund e-wallet ',
-       icon: 'menu',
-       handler: () => {
-         this.router.navigate(['/fondwallet'])
-         console.log('user wants to fondwallet his wallet');
-       }
-     },
-      {
-       text: 'pay with your wallet',
-       icon: 'wallet',
-       handler: () => {
-         if (this.walletBallance < 100) {
-           this.ion.ionToast('You don"t have enough money ', 3000, 'danger')
-           this.router.navigate(['/fondwallet'])
-          }else{
-          this.walletSer.defundWallet(100)
-          }
-         console.log('Share clicked');
-       }
-     }, {
-       text: 'Cancel',
-       icon: 'close',
-       role: 'cancel',
-       handler: () => {
-
-         console.log('Cancel clicked');
-       }
-     }]
-   });
- 
-   await actionSheet.present();
- }
-
 }

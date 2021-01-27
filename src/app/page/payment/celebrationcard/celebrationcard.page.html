@@ -1,5 +1,5 @@
 <ion-header  class="ion-no-border" >
-  <ion-toolbar style="--background: crimson;">
+  <ion-toolbar style="--background: rebeccapurple;">
     <ion-buttons slot="start">
       <ion-back-button class="back-btn" defaultHref="tabs/wallet"></ion-back-button>
     </ion-buttons>
@@ -9,99 +9,85 @@
 
 <ion-content>
  
-
-    <div   style="background: crimson;" color="primary" >
-<ion-item lines='none' style=" --ion-item-background:crimson;">
-  <div slot="start">
-    
-    <h3 class="text-bold text-light">
-      Celebrate that special person
-    </h3>
-    
-  </div>
-</ion-item>
-<br>
- <div 
- style="
- background:white;
- height: 15px; 
- /* margin-top: 5px; */
- border-radius: 15px 15px 0px 0px;">
-   
- </div>
-</div>
-
-
-  <ion-list class="bottom-div">
-
-
-    <form   #blogForm="ngForm" class="form" (ngSubmit)="blogForm.form.valid && saveBlogPost()" accept-charset="UTF-8" novalidate>
+  <form   #blogForm="ngForm" (ngSubmit)="blogForm.form.valid && saveBlogPost()" accept-charset="UTF-8" novalidate>
+    <div style="background: rebeccapurple;text-align: center;">
+      <ion-avatar style="height: 100px;width: 100px;margin: auto;">
+        <img src="assets/images/userIcon.svg"*ngIf="!postImage"  >
+        <img *ngIf="postImage" [src]="postImage || '//:0'"  >    
+      </ion-avatar>
+      <br>
+        <small style="width: 100px;color: white;">Celebrate that special person</small>
+        <br><br>
+      <div style="height: 20px;background: white;border-radius: 10px 10px 0px 0px;"></div>
+    </div>
   
-      
-      <div   class="form-control">
-        <ion-input placeholder="Person's name" name="userName" [(ngModel)]="postData.receiverName"
-        required  clearInput ></ion-input>
-      </div>
-      <div   class="form-control mt-2 mb-2">
-        <ion-input  placeholder="Your name"
-         name="userName" [(ngModel)]="postData.SenderName"
-         required   clearInput  ></ion-input>
-      </div>
-     <div class="form-group">
-       <select class="form-control" aria-placeholder="select ceebration" name="" id="">
-         <option>Birthday</option>
-         <option>Marriage</option>
-         <!-- <option></option> -->
-       </select>
-     </div>
-      <ng-container >
-    <ion-row  class="mt-4">
-      <ion-col size="3">
-         <button class="upload-btn">
-          <img src="assets/images/defaultimage.png"*ngIf="!postImage"  style="height: 60px;width: 60px;">
-          <img *ngIf="postImage" [src]="postImage || '//:0'" style="height: 60px;width: 60px;">
-            <div *ngIf="loading" class="text-center"> 
-                 <ion-spinner name="crescent" color="success"></ion-spinner>
-                 <small class="text-muted"> Preparing File  {{uploadPercent}} %</small>
-            </div>
-             <div class="text-center" *ngIf="uploadPercent">
-               <div class="text-center text-primary" *ngIf="uploadPercent == 100">
-                    Ready  !!
-               </div>
+    
+    <ion-item class="darklist">
+      <ion-input name="postContent" [(ngModel)]="postData.reciver"
+      required  clearInput 
+       class="title " placeholder="reciver"></ion-input>
+    </ion-item>
+    <ion-item   class="darklist">
+      <ion-textarea name="postContent" [(ngModel)]="postData.author"
+      required   clearInput 
+       class="title " placeholder="sender"></ion-textarea>
+    </ion-item>
+    <ion-item   class="darklist">
+      <ion-input name="postContent" [(ngModel)]="postData.date"
+      required   clearInput 
+       class="title " placeholder="Date of event"></ion-input>
+    </ion-item>
+    <ion-item  class="darklist">
+      <ion-select name="postContent" [(ngModel)]="postData.type"
+      required   clearInput 
+       class="title " placeholder="Type if celebration.">
+        <ion-select-option value="Happybirthday">Birthday</ion-select-option>
+        <ion-select-option value="Happy Wedding"> Wadding</ion-select-option>
+        <ion-select-option value="Happy Graduation">Graduation </ion-select-option>
+     
+      </ion-select>
+    </ion-item>
+  <ion-row class="mt-4">
+    <ion-col size="3">
+       <button class="upload-btn">
+          <div *ngIf="loading" class="text-center"> 
+               <ion-spinner name="crescent" color="success"></ion-spinner>
+               <small class="text-muted"> Preparing File  {{uploadPercent}} %</small>
+          </div>
+           <div class="text-center" *ngIf="uploadPercent">
+             <div class="text-center alert alert-primary" *ngIf="uploadPercent == 100">
+                  Ready  !!
              </div>
-        </button>
-      </ion-col>
-      <ion-col size="9">
-        <div  class="btn-image-uploade mb-2" fill="outline" size="small" >
-          <ion-icon name="images"  class="m-2"></ion-icon>
-          <input type="file" id="file" accept="image/x-png,image/gif,image/jpeg" (change)="uploadPostImage($event)" #filepiInput/> 
-          <label for="file" >
-            <small class="text-bold">Person's Image</small><br>
-            <small style="font-size: 10px;">PNG, JPG,GIF</small>
-          </label>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ng-container>
-  <!-- <ng-container *ngIf="!uploadaccess">
-   <div class="text-center m-3">
-     <p>
-         You don"t have enough money in your wallet  
-     </p>
-      <small [routerLink]="['/fondwallet']" routerLinkActive="router-link-active"  class="text-primary">Fund wallet</small>
-   </div>
- 
-  </ng-container> -->
+           </div>
+      </button>
+    </ion-col>
+    <ion-col size="9">
+      <div  class="btn-image-uploade mb-2" fill="outline" size="small" >
+        <ion-icon name="images" color="primary" class="m-2"></ion-icon>
+        <input type="file" id="file" accept="image/x-png,image/gif,image/jpeg" (change)="uploadPostImage($event)" #filepiInput/> 
+
+        <label for="file" >
+          <small class="text-bold">Image or Gif</small><br>
+          <small style="font-size: 10px;">PNG, JPG,GIF</small>
+        </label>
+        <!-- <input style="display: non" type="file" name="file">   -->
+      </div>
+      
+          
+    </ion-col>
+  </ion-row>
   <div class="m-1">
-    <button class="btn  btn-danger btn-block btn-outline"
-    (click)="  presentActionSheet()"
+    <button style="background: rebeccapurple;border: none;" class="btn btn-primary btn-block btn-outline"
+    (click)="  saveBlogPost()"
     [disabled]="!blogForm.valid" type="submit"
-    type="button">Submit</button>
-    </div>   
-  </form>
-  </ion-list>
+    type="button">Post</button>
+    </div>
+
+</form>
+  
 </ion-content>
 
-<ion-footer>
+<ion-footer style="text-align: center;">
+  <small >you will be charged with  <strong> #100</strong> From your wallet</small>
  
 </ion-footer>

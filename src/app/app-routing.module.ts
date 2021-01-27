@@ -116,7 +116,7 @@ const routes: Routes = [
     loadChildren: () => import('./page/mainservice/nosevice/nosevice.module').then( m => m.NosevicePageModule)
   },
   {
-    path: 'celebrationcard',
+    path: 'celebrationcard/:walletamount',
     loadChildren: () => import('./page/payment/celebrationcard/celebrationcard.module').then( m => m.CelebrationcardPageModule)
   },
   {
@@ -154,7 +154,7 @@ const routes: Routes = [
     loadChildren: () => import('./page/note/notelist/notelist.module').then( m => m.NotelistPageModule)
   },
   {
-    path: 'notedetail',
+    path: 'notedetail/:noteid',
     loadChildren: () => import('./page/note/notedetail/notedetail.module').then( m => m.NotedetailPageModule)
   },
   {
@@ -168,6 +168,14 @@ const routes: Routes = [
   {
     path: 'makenote',
     loadChildren: () => import('./page/note/makenote/makenote.module').then( m => m.MakenotePageModule)
+  },
+  {
+    path: 'homecell',
+    loadChildren: () => import('./page/alllocation/homecell/homecell.module').then( m => m.HomecellPageModule)
+  },
+  {
+    path: 'my-purchase',
+    loadChildren: () => import('./page/profile/my-purchase/my-purchase.module').then( m => m.MyPurchasePageModule)
   },
 
 

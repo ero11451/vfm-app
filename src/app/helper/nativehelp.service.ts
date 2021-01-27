@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { IonhelperService } from './ionhelper.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +24,26 @@ export class NativehelpService {
     presentationstyle : 'pagesheet',//iOS only 
     fullscreen : 'no',//Windows only    
 };
-  constructor(private theInAppBrowser: InAppBrowser) {}
+  constructor(
+    private theInAppBrowser: InAppBrowser,
+    private callNumber: CallNumber,
+    private ion: IonhelperService
+    ) {}
 
   openWebPage(sitepage){
     let target = "_self";
     this.theInAppBrowser.create(sitepage,target,this.options);
   }
+  openPhone(phonenumber){
+    
+this.callNumber.callNumber(phonenumber, true)
+    .then(res =>  { 
+      this.ion.ionToast('your phone dialer was launched successfully', 2000, 'primary')
+      console.log('Launched dialer!', res)}
+    )
+    .catch(err =>   {
+      console.log('Error launching dialer', err)
+      this.ion.ionToast('there was an error with your dialer', 2000,'danger')
+    });
+      }
 }

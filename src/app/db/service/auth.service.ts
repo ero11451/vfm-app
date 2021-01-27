@@ -19,8 +19,9 @@ interface User {
   userImage: string;
   onlineStatus: boolean;
   bio: string;
-  Followings?: number;
-  Followers?: number;
+  gender:string;
+  location:string;
+  branch:string;
 }
 @Injectable({
   providedIn: 'root'
@@ -58,7 +59,7 @@ export class AuthService {
   }
 
     // Register user with email/password
-  RegisterUser(useremail, password, username , phoneNumber, userContry, image) {
+  RegisterUser(useremail, password, username , phoneNumber, userContry, image, branch, gender) {
       this.ion.ionLoading(`please wait`, 1000);
       return this.ngFireAuth.createUserWithEmailAndPassword(useremail, password)
       .then(user => {
@@ -70,14 +71,14 @@ export class AuthService {
           displayName: username,
           userImage: image,
           walletBallance: 0,
-          totalViews: 0,
           status: 'member',
           onlineStatus: true,
           phoneNumber,
-          // location: userContry || '',
+          location: userContry ?? '',
           bio: '',
-          Followings: 0,
-          Followers: 0,
+          branch: branch,
+          gender:gender
+
         };
         return userRef.set (data, { merge: true})
         .then(FormData =>
@@ -98,21 +99,16 @@ export class AuthService {
       );
      }
 
-   checkLoginState(){ 
-    //  this.location.
-   }
-
     getAuthState() {
       return this.afAuth.onAuthStateChanged;
     }
     getCurrentUseData(){
-      // return this.afAuth.authState.subscribe(data => {
        return this.userSer.retrieveUserDocumentFromID(this.userData.uid);
-      // });/
     }
+
     // Sign-out
     SignOut() {
-         this.ngFireAuth.signOut().then(() => {
+        this.ngFireAuth.signOut().then(() => {
         this.router.navigate(['/login']);
       });
     }
@@ -120,7 +116,6 @@ export class AuthService {
   userObs: Observable<any>;
 
   updateUserData(user) {
-
     // check if user already exists
     this.userCollection = this.afs.collection('users', ref => ref.where('uid', '==', user.uid));
     this.userObs = this.userCollection.valueChanges();
@@ -129,25 +124,24 @@ export class AuthService {
     })
     .then(
       (success) => {
-        this.router.navigateByUrl('/login');
+        console.log('update was successful', success)
       })
     .catch (
       (err) => {
         // setup user data in firestore on login
           console.log('New User login.\nSetting up user in database.');
           const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-
           const data: User = {
             uid: user.uid,
             email: user.email,
             displayName: user.displayName,
             status: '',
-            Followings: 0,
-            Followers: 0,
             userImage: user.displayimage,
             onlineStatus: user.onlineStatus,
-            bio: user.bio
-            // joinDate: firebase.default.firestore.FieldValue.serverTimestamp()
+            bio: user.bio,
+            location: user.location,
+            gender: user.gender,
+            branch: user.dranch
           };
 
           return userRef.set(data, { merge: true });
@@ -167,12 +161,10 @@ fundWallet(amount){
   defundWallet(amount){
     const user : AngularFirestoreDocument<any> = this.afs.doc(`users/${this.currentUser.uid}`);
     const decrement = firebase.default.firestore.FieldValue.increment(-amount);
-  
     return user.update({
         walletBallance: decrement
     })
     .then(function() {
-
         console.log("Document successfully updated!");
     })
     .catch(function(error) {

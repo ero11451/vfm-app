@@ -3,7 +3,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { combineLatest } from "rxjs";
-import { FollowService } from '../../../db/service/follow.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-search',
@@ -36,7 +35,6 @@ export class SearchPage implements OnInit {
   currentUserId;
 
   constructor(
-    private followSvc: FollowService,
     private fireAuth: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router,

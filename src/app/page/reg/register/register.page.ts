@@ -23,7 +23,7 @@ export class RegisterPage implements OnInit {
       useLocale: true,
       maxResults: 5
     };
-    this.geoLocation.getCurrentPosition().then(resp => {
+      this.geoLocation.getCurrentPosition().then(resp => {
       this.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
         .then((result) => {
           this.userlocation = result[0].toString();

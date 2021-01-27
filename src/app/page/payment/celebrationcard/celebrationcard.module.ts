@@ -15,7 +15,6 @@ import { CelebrationcardPage } from './celebrationcard.page';
     FormsModule,
     IonicModule,
     CelebrationcardPageRoutingModule,
-    ReactiveFormsModule
   ],
   declarations: [CelebrationcardPage]
 })

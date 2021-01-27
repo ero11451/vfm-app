@@ -32,13 +32,6 @@ export class GroupPage implements OnInit {
   private unsubscribe$ = new Subject<void>();
   @ViewChild('slides', { static: true }) slider: IonSlides;
   segment = 0;
-  async segmentChanged(ev: any) {
-    await this.slider.slideTo(this.segment);
-  }
- async slideChanged() {
-    this.segment = await this.slider.getActiveIndex();
-  }
-
   constructor(
     private auth : AngularFireAuth,
     private userSer: UserService,
@@ -49,6 +42,12 @@ export class GroupPage implements OnInit {
   ngOnInit(){
     this.getuserAuth();
     this.getUser()
+  }
+  async segmentChanged(ev: any) {
+    await this.slider.slideTo(this.segment);
+  }
+ async slideChanged() {
+    this.segment = await this.slider.getActiveIndex();
   }
 
   getUser(){

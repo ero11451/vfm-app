@@ -14,21 +14,6 @@ import { AuthService } from 'src/app/db/service/auth.service';
 import { LoadingController } from '@ionic/angular';
 
 
-// export class Post {
-//   postId: string;
-//   content: string;
-//   postImage: string;
-//   author: string;
-//   Title: string;
-//   authorimage: string;
-//   authorId: string;
-//   views: number;
-
-//   createdDate: any;
-//   constructor() {
-//   this.content = '';
-//   }
-//   }
 
 
 
@@ -103,7 +88,7 @@ export class MakepostPage implements OnInit {
     this.ion.ionLoading('please wait', 500),
     this.db.collection<Post>('post').add({
       content : this.postData.content,
-      photo : this.postImage ,
+      // photo : this.postImage ,
       author: this.username,
       views: 0,
       authorId: this.userId,

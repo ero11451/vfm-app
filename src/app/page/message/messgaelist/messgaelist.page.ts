@@ -7,6 +7,7 @@ import { MenuPage } from 'src/app/container/menu/menu.page';
 import { IonhelperService } from 'src/app/helper/ionhelper.service';
 import { YoutubeService } from '../../../allapi/youtube.service';
 import { Router } from '@angular/router';
+import { NativehelpService } from 'src/app/helper/nativehelp.service';
 
 @Component({
   selector: 'app-messgaelist',
@@ -32,7 +33,8 @@ export class MessgaelistPage implements OnInit {
    private list: YoutubeService,
    public sanitizer: DomSanitizer,
    private plt: Platform,
-   private router: Router
+   private router: Router,
+   private nativeHelp: NativehelpService
    ) {
 
    this.sanitizer = sanitizer;
@@ -91,7 +93,9 @@ export class MessgaelistPage implements OnInit {
   navTo(channelId){
    this.router.navigate(['messgaelist', channelId]);
   }
-
+  openWebpage(page) {
+     this.nativeHelp.openWebPage(page)
+  }
 //  getlist(){
 //    this.list.getPlaylistsForChannel(this.playlistId).subscribe(d => console.log('platelist', d))
 //  }

@@ -38,10 +38,11 @@
        <p style="margin-bottom: -5px;">Youtube Channel</p>
        <!-- <small  class="text-muted"> Voice of freedom </small> -->
       </ion-label>
-     <button type="button" name="" id="" class="btn btn-danger btn-sm pl-2 pr-2">Subcribe</button>
+     <button type="button" name="" id=""
+     (click)="openWebpage('https://youtu.be/amKCw_rC4_s')"  class="btn btn-danger btn-sm pl-2 pr-2">Subcribe</button>
    </ion-item>
-  <ion-item class="ion-no-padding" lines='none'>
-     <p class=" ml-2 text-dark">
+  <ion-item  lines='none'>
+     <p class=" text-dark">
       Popular
   </p>      
 <small class="text-primary" slot="end" (click)="navTo('UCxN3lKZszErqjhMPvSRTwRg')" >
@@ -64,12 +65,9 @@
           </small>       
       </div>
     </div>
-  </div>       
-</ion-list>
-
-  <ion-list>
-    <ion-item class="ion-no-padding" lines='none'>
-        <p slot="start" class=" ml-2 text-dark">
+  </div>      
+    <ion-item  lines='none'>
+        <p slot="start" class="text-dark">
          Recent
        </p>   
        <small class="text-primary" 

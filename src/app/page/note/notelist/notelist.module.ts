@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { NotelistPageRoutingModule } from './notelist-routing.module';
 
 import { NotelistPage } from './notelist.page';
+import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NotelistPageRoutingModule
+    NotelistPageRoutingModule,
+    NgPipesModule,
   ],
   declarations: [NotelistPage]
 })

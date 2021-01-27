@@ -18,20 +18,19 @@
       [(ngModel)]="amount"  numbersOnly class="form-control"></ion-input>
     </div>
 
-
+<br>
   <ion-select 
     id="inputState" placeholder="Select Currency" class="form-control"
   [(ngModel)]="currency" >
   <ion-label>Select Currency</ion-label>
 
-    <ion-select-option    value="EUR" >Euro</ion-select-option>
     <ion-select-option   value = "NGN">NGN</ion-select-option>
     <ion-select-option   value="USD">USD</ion-select-option>
   </ion-select>
  <br>
 <div class="text-center">
   <ion-button (click)=" makePayment()" expand="block"  
-   type="button">Fund Account</ion-button>
+   type="button">Fund Wallet</ion-button>
 </div>
 </ion-list>
 

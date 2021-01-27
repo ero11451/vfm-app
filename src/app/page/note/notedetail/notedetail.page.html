@@ -11,13 +11,13 @@
 
 <ion-content>
   
-<ion-textarea  rows="20" [(ngModel)]="text"></ion-textarea>
+<ion-textarea  rows="20" [(ngModel)]="noteContent"></ion-textarea>
 
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-    <ion-button  expand="block"  >
-      Submit
+    <ion-button (click)="submiteUpate()"  expand="block"  >
+      update
     </ion-button>
   </ion-toolbar>
 </ion-footer>

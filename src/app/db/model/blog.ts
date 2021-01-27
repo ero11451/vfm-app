@@ -1,7 +1,7 @@
 export class Post {
     postId: string;
     content: string;
-    photo: string;
+    // photo: string;
     author: string;
     views: number;
     likes: any;
